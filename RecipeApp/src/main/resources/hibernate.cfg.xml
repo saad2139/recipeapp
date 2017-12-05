@@ -6,8 +6,9 @@
         <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
         
-        <property name="hibernate.connection.url">jdbc:oracle:thin:@orcl.czxgfqnyl4hq.us-east-2.rds.amazonaws.com:1521:ORCL</property>
-        <property name="hibernate.connection.username">bears</property>
+        
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@orcl.cw2ufcamuwpq.us-east-2.rds.amazonaws.com:1521:ORCL</property>
+        <property name="hibernate.connection.username">recipeapp</property>
         <property name="hibernate.connection.password">p4ssw0rd</property>
         <property name="hibernate.connection.pool_size">35</property>
         
