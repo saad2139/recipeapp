@@ -3,8 +3,6 @@ package com.revature.entities;
 import java.sql.Timestamp;
 
 import javax.persistence.*;
-
-
 @Entity
 public class Recipe {
 	@Id
