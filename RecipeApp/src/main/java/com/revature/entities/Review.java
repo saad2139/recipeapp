@@ -12,9 +12,22 @@ public class Review {
 	private String description;
 	private int rating;
 	
+	public Review() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Review(int reviewId, String description, int rating) {
+		super();
+		this.reviewId = reviewId;
+		this.description = description;
+		this.rating = rating;
+	}
+	
 	public int getReviewId() {
 		return reviewId;
 	}
+
 	public void setReviewId(int reviewId) {
 		this.reviewId = reviewId;
 	}
@@ -34,12 +47,7 @@ public class Review {
 	public String toString() {
 		return "Review [reviewId=" + reviewId + ", description=" + description + ", rating=" + rating + "]";
 	}
-	public Review(int reviewId, String description, int rating) {
-		super();
-		this.reviewId = reviewId;
-		this.description = description;
-		this.rating = rating;
-	}
+
 	
 	
 	
