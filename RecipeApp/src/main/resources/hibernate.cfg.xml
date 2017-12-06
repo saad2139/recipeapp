@@ -31,5 +31,6 @@
 		<mapping class="com.revature.entities.Role"/>
 		<mapping class="com.revature.entities.User"/>
 		<mapping class="com.revature.entities.Difficulty"/>
+		<mapping class="com.revature.entities.Review"/>
 	</session-factory>
 </hibernate-configuration>
