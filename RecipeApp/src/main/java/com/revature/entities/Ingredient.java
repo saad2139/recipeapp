@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "ingredient")
-public class Ingredients {
+public class Ingredient {
 	@Id
 	@Column(name = "ingredient_id")
 	@SequenceGenerator(name = "INGREDIENT_SEQ", sequenceName = "INGREDIENT_SEQ")
@@ -16,12 +16,12 @@ public class Ingredients {
 
 	private int quantity;
 
-	public Ingredients() {
+	public Ingredient() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ingredients(int id, String name, int quantity) {
+	public Ingredient(int id, String name, int quantity) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -46,7 +46,7 @@ public class Ingredients {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Ingredients other = (Ingredients) obj;
+		Ingredient other = (Ingredient) obj;
 		if (id != other.id)
 			return false;
 		if (name == null) {
