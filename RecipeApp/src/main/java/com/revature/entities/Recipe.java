@@ -3,6 +3,7 @@ package com.revature.entities;
 import java.sql.Timestamp;
 
 import javax.persistence.*;
+
 @Entity
 public class Recipe {
 	@Id
@@ -41,7 +42,6 @@ public class Recipe {
 
 	public Recipe() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Recipe(int recipeId, String recipeName, int image, double cookingTime, Timestamp dateCreated,
