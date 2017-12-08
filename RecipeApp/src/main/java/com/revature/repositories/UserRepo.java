@@ -1,5 +1,11 @@
 package com.revature.repositories;
 
-public class UserRepo {
+import com.revature.entities.User;
+
+public interface UserRepo {
+
+	User findByCredential(String username, String password);
+	
+	User registration(User newUser);
 
 }
