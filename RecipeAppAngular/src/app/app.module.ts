@@ -9,6 +9,7 @@ import {AppComponent} from './app.component';
 import {NavComponent} from './nav/nav.component';
 
 import { appRoutes } from './routes';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { appRoutes } from './routes';
   declarations: [
     AppComponent,
     NavComponent,
+    RegistrationComponent,
    ],
   providers: [
 
