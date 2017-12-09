@@ -1,4 +1,4 @@
-package com.revature.repositories;
+package com.revature.services;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.entities.Recipe;
+import com.revature.repositories.RecipeRepo;
 
 @Service
 public class RecipeService {

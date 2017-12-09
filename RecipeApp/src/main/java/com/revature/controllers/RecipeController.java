@@ -1,4 +1,4 @@
-package com.revature.repositories;
+package com.revature.controllers;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Recipe;
+import com.revature.services.RecipeService;
 
 @RestController
 @RequestMapping("recipe")
