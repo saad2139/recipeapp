@@ -24,7 +24,7 @@ public class RecipeController {
 		return rs.viewAllRecipes();
 	}
 	
-	@PostMapping("createRecipe")
+	@PostMapping("addRecipe")
 	public Recipe addRecipe(@RequestBody Recipe r) {
 		return rs.addRecipe(r);
 	}

@@ -25,7 +25,14 @@ public class Role {
 		this.id = id;
 		this.role_name = role_name;
 	}
-
+	public Role(int id) {
+		super();
+		if(id == 1) {
+			this.role_name = "User";
+		}else if(id == 2) {
+			this.role_name = "Moderator";
+		}
+	}
 	public int getId() {
 		return id;
 	}

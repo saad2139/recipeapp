@@ -14,10 +14,7 @@ public class RecipeService {
 	
 	@Autowired
 	private RecipeRepo rr;
-	
-//	@Autowired
-//	private SessionFactory sf;
-	
+		
 	public List<Recipe> viewAllRecipes(){
 		return rr.findAll();
 	}
