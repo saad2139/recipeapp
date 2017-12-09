@@ -1,6 +1,7 @@
 package com.revature.entities;
 
-import java.sql.Timestamp;
+import java.sql.Blob;
+import java.sql.Date;
 
 import javax.persistence.*;
 
@@ -16,13 +17,13 @@ public class Recipe {
 	private String recipeName;
 
 	// not sure how we are going to implement
-	private int image;
+	private Blob image;
 
 	@Column(name = "cooking_time")
 	private double cookingTime;
 
 	@Column(name = "date_created")
-	private Timestamp dateCreated;
+	private Date dateCreated;
 
 	private String directions;
 
@@ -44,7 +45,7 @@ public class Recipe {
 		super();
 	}
 
-	public Recipe(int recipeId, String recipeName, int image, double cookingTime, Timestamp dateCreated,
+	public Recipe(int recipeId, String recipeName, Blob image, double cookingTime, Date dateCreated,
 			String directions, int upvotes, int flag, Difficulty difficulty, User creator) {
 		super();
 		this.recipeId = recipeId;
@@ -82,11 +83,11 @@ public class Recipe {
 		this.recipeName = recipeName;
 	}
 
-	public int getImage() {
+	public Blob getImage() {
 		return image;
 	}
 
-	public void setImage(int image) {
+	public void setImage(Blob image) {
 		this.image = image;
 	}
 
@@ -98,11 +99,11 @@ public class Recipe {
 		this.cookingTime = cookingTime;
 	}
 
-	public Timestamp getDateCreated() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Timestamp dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
