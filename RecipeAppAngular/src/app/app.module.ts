@@ -11,6 +11,7 @@ import {NavComponent} from './nav/nav.component';
 import { appRoutes } from './routes';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { RecipeComponent } from './recipe/recipe.component';
+import { CategoriesService } from './services/categories.service';
 
 @NgModule({
   imports: [
@@ -27,7 +28,7 @@ import { RecipeComponent } from './recipe/recipe.component';
     RecipeComponent,
    ],
   providers: [
-
+    CategoriesService
    ],
   bootstrap: [AppComponent]
 })

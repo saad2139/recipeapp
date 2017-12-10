@@ -18,6 +18,7 @@ public class Category {
 	@Column(name = "category_name")
 	private String categoryName;
 	
+	
 	@ManyToMany(mappedBy = "categories")
 	private Set<Recipe> recipes;
 
@@ -32,7 +33,11 @@ public class Category {
 		this.categoryName = categoryName;
 		this.recipes = recipes;
 	}
-
+	public Category(int recipeId, String categoryName) {
+		super();
+		this.categoryId = recipeId;
+		this.categoryName = categoryName;
+	}
 	public int getRecipeId() {
 		return categoryId;
 	}

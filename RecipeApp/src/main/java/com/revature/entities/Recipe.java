@@ -49,7 +49,7 @@ public class Recipe {
 			inverseJoinColumns = { @JoinColumn (name = "ingridients_id")})
 	private Set<Ingredient> ingredients;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "recipe_categories",
 			joinColumns = { @JoinColumn(name = "recipe_id")},
