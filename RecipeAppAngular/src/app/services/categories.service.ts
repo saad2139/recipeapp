@@ -10,6 +10,7 @@ export class CategoriesService {
   constructor(private http: Http) {
   }
 
+  categories: Array<Category>;
   url = 'http://localhost:8080/Recipe-App/categories';
 
   getCategories() {

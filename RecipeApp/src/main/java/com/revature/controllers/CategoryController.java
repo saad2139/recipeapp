@@ -14,7 +14,7 @@ import com.revature.services.CategoryService;
 
 @RestController
 @RequestMapping("categories")
-@CrossOrigin(allowCredentials="true", origins="http://localhost:4200") //angular
+@CrossOrigin(allowCredentials="true", origins="http://localhost:4200")//angular
 public class CategoryController {
 	
 	@Autowired

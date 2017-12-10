@@ -17,7 +17,7 @@ export class AddRecipeComponent implements OnInit {
   recipeName =  ' ';
   recipeImage;
   cookingTime;
-  categories = [];
+  categories: Array<Category>;
   ingredients;
   directions;
   difficulty;
