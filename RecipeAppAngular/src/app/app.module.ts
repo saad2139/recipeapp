@@ -10,6 +10,7 @@ import {NavComponent} from './nav/nav.component';
 
 import { appRoutes } from './routes';
 import { RegistrationComponent } from './registration/registration.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { RegistrationComponent } from './registration/registration.component';
     AppComponent,
     NavComponent,
     RegistrationComponent,
+    HomePageComponent,
    ],
   providers: [
 
