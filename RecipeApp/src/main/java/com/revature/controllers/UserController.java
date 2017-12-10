@@ -27,9 +27,7 @@ public class UserController {
 	
 	@PostMapping("register")
 	public User register(@RequestBody User u) {
-		System.out.println(u);
-		return null;
-		//return us.registration(u);
+		return us.registration(u);
 	}
 
 

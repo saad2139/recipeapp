@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  context: 'http://localhost:4200/',
+  context: 'http://localhost:8080/Recipe-App/',
   bootContext: 'http://localhost/'
 };
