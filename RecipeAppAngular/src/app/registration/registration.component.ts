@@ -11,7 +11,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class RegistrationComponent implements OnInit {
 
   closeResult: string;
-  model: any = {};
+  register: any = {};
   loading = false;
 
   constructor(private modalService: NgbModal) { }
