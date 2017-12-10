@@ -30,7 +30,7 @@ export class RegistrationComponent implements OnInit {
     this.modalService.open(content);
   }
   submit() {
-    this.http.post(environment.context, this.register, { withCredentials: true })
+    this.http.post(environment.context + 'home/register', this.register, { withCredentials: true })
       .subscribe((succResp) => {
         if (succResp.text() !== '') {
           alert('Registration Success');
