@@ -9,6 +9,9 @@ import {AppComponent} from './app.component';
 import {NavComponent} from './nav/nav.component';
 
 import { appRoutes } from './routes';
+import { AddRecipeComponent } from './add-recipe/add-recipe.component';
+import { RecipeComponent } from './recipe/recipe.component';
+import { CategoriesService } from './services/categories.service';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component';
 
@@ -23,11 +26,13 @@ import { HomePageComponent } from './home-page/home-page.component';
   declarations: [
     AppComponent,
     NavComponent,
+    AddRecipeComponent,
+    RecipeComponent,
     RegistrationComponent,
     HomePageComponent,
    ],
   providers: [
-
+    CategoriesService
    ],
   bootstrap: [AppComponent]
 })

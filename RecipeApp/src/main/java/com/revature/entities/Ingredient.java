@@ -1,5 +1,7 @@
 package com.revature.entities;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,17 +17,21 @@ public class Ingredient {
 	private String name;
 
 	private int quantity;
-
+	
+	@ManyToMany(mappedBy = "ingredients")
+	private Set <Recipe> recipes;
+	
 	public Ingredient() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ingredient(int id, String name, int quantity) {
+	public Ingredient(int id, String name, int quantity, Set<Recipe> recipes) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.quantity = quantity;
+		this.recipes = recipes;
 	}
 
 	@Override
@@ -35,6 +41,7 @@ public class Ingredient {
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + quantity;
+		result = prime * result + ((recipes == null) ? 0 : recipes.hashCode());
 		return result;
 	}
 
@@ -56,12 +63,12 @@ public class Ingredient {
 			return false;
 		if (quantity != other.quantity)
 			return false;
+		if (recipes == null) {
+			if (other.recipes != null)
+				return false;
+		} else if (!recipes.equals(other.recipes))
+			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Ingredients [id=" + id + ", name=" + name + ", quantity=" + quantity + "]";
 	}
 
 	public int getId() {
@@ -87,4 +94,19 @@ public class Ingredient {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+	public Set<Recipe> getRecipes() {
+		return recipes;
+	}
+
+	public void setRecipes(Set<Recipe> recipes) {
+		this.recipes = recipes;
+	}
+
+	@Override
+	public String toString() {
+		return "Ingredient [id=" + id + ", name=" + name + ", quantity=" + quantity + ", recipes=" + recipes + "]";
+	}
+	
+	
 }
