@@ -10,6 +10,7 @@ import {NavComponent} from './nav/nav.component';
 
 import { appRoutes } from './routes';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
+import { RecipeComponent } from './recipe/recipe.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { AddRecipeComponent } from './add-recipe/add-recipe.component';
     AppComponent,
     NavComponent,
     AddRecipeComponent,
+    RecipeComponent,
    ],
   providers: [
 
