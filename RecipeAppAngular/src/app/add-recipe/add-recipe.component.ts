@@ -13,6 +13,7 @@ export class AddRecipeComponent implements OnInit {
   recipeName =  ' ';
   recipeImage;
   cookingTime;
+  ingredients;
   directions;
   difficulty;
 
@@ -22,6 +23,6 @@ export class AddRecipeComponent implements OnInit {
   }
 
   submit() {
-
+    alert('added new recipe');
   }
 }
