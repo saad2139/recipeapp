@@ -1,5 +1,9 @@
 import { Routes } from '@angular/router';
+import { RegistrationComponent } from './registration/registration.component';
 
 export const appRoutes: Routes = [
-  // routes go here
+  {
+    path: 'register',
+    component: RegistrationComponent
+  },
 ];

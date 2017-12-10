@@ -9,7 +9,7 @@ import {AppComponent} from './app.component';
 import {NavComponent} from './nav/nav.component';
 
 import { appRoutes } from './routes';
-import { RecipeViewerComponent } from './recipe-viewer/recipe-viewer.component';
+import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { HomePageComponent } from './home-page/home-page.component';
   declarations: [
     AppComponent,
     NavComponent,
-    RecipeViewerComponent,
+    RegistrationComponent,
     HomePageComponent,
    ],
   providers: [
