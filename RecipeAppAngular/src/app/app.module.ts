@@ -9,6 +9,8 @@ import {AppComponent} from './app.component';
 import {NavComponent} from './nav/nav.component';
 
 import { appRoutes } from './routes';
+import { RecipeViewerComponent } from './recipe-viewer/recipe-viewer.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   imports: [
@@ -21,6 +23,8 @@ import { appRoutes } from './routes';
   declarations: [
     AppComponent,
     NavComponent,
+    RecipeViewerComponent,
+    HomePageComponent,
    ],
   providers: [
 
