@@ -1,6 +1,8 @@
 package com.revature.entities;
 
-import java.sql.Timestamp;
+import java.sql.Blob;
+import java.sql.Date;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -16,13 +18,13 @@ public class Recipe {
 	private String recipeName;
 
 	// not sure how we are going to implement
-	private int image;
+	private Blob image;
 
 	@Column(name = "cooking_time")
 	private double cookingTime;
 
 	@Column(name = "date_created")
-	private Timestamp dateCreated;
+	private Date dateCreated;
 
 	private String directions;
 
@@ -35,17 +37,33 @@ public class Recipe {
 	@JoinColumn(name = "difficulty_id")
 	private Difficulty difficulty;
 
-	// a recipe has a creator/user that created the recipe
+	// Many recipes are created by the user
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private User creator;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL})
+	@JoinTable(
+			name = "recipe_ingredients",
+			joinColumns = { @JoinColumn(name = "recipe_id")},
+			inverseJoinColumns = { @JoinColumn (name = "ingridients_id")})
+	private Set<Ingredient> ingredients;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "recipe_categories",
+			joinColumns = { @JoinColumn(name = "recipe_id")},
+			inverseJoinColumns = { @JoinColumn (name = "category_id")})
+	Set<Category> categories;
 
 	public Recipe() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-
-	public Recipe(int recipeId, String recipeName, int image, double cookingTime, Timestamp dateCreated,
-			String directions, int upvotes, int flag, Difficulty difficulty, User creator) {
+	
+	public Recipe(int recipeId, String recipeName, Blob image, double cookingTime, Date dateCreated, String directions,
+			int upvotes, int flag, Difficulty difficulty, User creator, Set<Ingredient> ingridients,
+			Set<Category> categories) {
 		super();
 		this.recipeId = recipeId;
 		this.recipeName = recipeName;
@@ -57,14 +75,10 @@ public class Recipe {
 		this.flag = flag;
 		this.difficulty = difficulty;
 		this.creator = creator;
+		this.ingredients = ingridients;
+		this.categories = categories;
 	}
 
-	@Override
-	public String toString() {
-		return "Recipe [recipeId=" + recipeId + ", recipeName=" + recipeName + ", image=" + image + ", cookingTime="
-				+ cookingTime + ", dateCreated=" + dateCreated + ", directions=" + directions + ", upvotes=" + upvotes
-				+ ", flag=" + flag + ", difficulty=" + difficulty + ", creator=" + creator + "]";
-	}
 
 	public int getRecipeId() {
 		return recipeId;
@@ -82,11 +96,11 @@ public class Recipe {
 		this.recipeName = recipeName;
 	}
 
-	public int getImage() {
+	public Blob getImage() {
 		return image;
 	}
 
-	public void setImage(int image) {
+	public void setImage(Blob image) {
 		this.image = image;
 	}
 
@@ -98,11 +112,11 @@ public class Recipe {
 		this.cookingTime = cookingTime;
 	}
 
-	public Timestamp getDateCreated() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Timestamp dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
@@ -146,4 +160,109 @@ public class Recipe {
 		this.creator = creator;
 	}
 
+	public Set<Ingredient> getIngridients() {
+		return ingredients;
+	}
+
+	public void setIngridients(Set<Ingredient> ingridients) {
+		this.ingredients = ingridients;
+	}
+
+	public Set<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Set<Category> categories) {
+		this.categories = categories;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((categories == null) ? 0 : categories.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(cookingTime);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((creator == null) ? 0 : creator.hashCode());
+		result = prime * result + ((dateCreated == null) ? 0 : dateCreated.hashCode());
+		result = prime * result + ((difficulty == null) ? 0 : difficulty.hashCode());
+		result = prime * result + ((directions == null) ? 0 : directions.hashCode());
+		result = prime * result + flag;
+		result = prime * result + ((image == null) ? 0 : image.hashCode());
+		result = prime * result + ((ingredients == null) ? 0 : ingredients.hashCode());
+		result = prime * result + recipeId;
+		result = prime * result + ((recipeName == null) ? 0 : recipeName.hashCode());
+		result = prime * result + upvotes;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Recipe other = (Recipe) obj;
+		if (categories == null) {
+			if (other.categories != null)
+				return false;
+		} else if (!categories.equals(other.categories))
+			return false;
+		if (Double.doubleToLongBits(cookingTime) != Double.doubleToLongBits(other.cookingTime))
+			return false;
+		if (creator == null) {
+			if (other.creator != null)
+				return false;
+		} else if (!creator.equals(other.creator))
+			return false;
+		if (dateCreated == null) {
+			if (other.dateCreated != null)
+				return false;
+		} else if (!dateCreated.equals(other.dateCreated))
+			return false;
+		if (difficulty == null) {
+			if (other.difficulty != null)
+				return false;
+		} else if (!difficulty.equals(other.difficulty))
+			return false;
+		if (directions == null) {
+			if (other.directions != null)
+				return false;
+		} else if (!directions.equals(other.directions))
+			return false;
+		if (flag != other.flag)
+			return false;
+		if (image == null) {
+			if (other.image != null)
+				return false;
+		} else if (!image.equals(other.image))
+			return false;
+		if (ingredients == null) {
+			if (other.ingredients != null)
+				return false;
+		} else if (!ingredients.equals(other.ingredients))
+			return false;
+		if (recipeId != other.recipeId)
+			return false;
+		if (recipeName == null) {
+			if (other.recipeName != null)
+				return false;
+		} else if (!recipeName.equals(other.recipeName))
+			return false;
+		if (upvotes != other.upvotes)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Recipe [recipeId=" + recipeId + ", recipeName=" + recipeName + ", cookingTime=" + cookingTime
+				+ ", dateCreated=" + dateCreated + ", directions=" + directions + ", upvotes=" + upvotes + ", flag="
+				+ flag + ", difficulty=" + difficulty + ", creator=" + creator + ", ingredients=" + ingredients
+				+ ", categories=" + categories + "]";
+	}
+	
 }
