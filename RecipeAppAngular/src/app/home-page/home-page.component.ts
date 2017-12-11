@@ -9,20 +9,15 @@ import { environment } from '../../environments/environment';
 })
 export class HomePageComponent implements OnInit {
 
+
+
   constructor(public http: Http)  { }
 
   ngOnInit() {
-    this.http.post(environment.context + 'users/login',  { withCredentials: true }).subscribe(
-      (successResponse) => {
-          // this.reimbursements = successResponse.json();
-          alert('SUCCESS');
-          
-  },
-      (failResponse) => {
-          alert('FAILED');
-  });
+ 
+  }
 
 
   }
 
-}
+

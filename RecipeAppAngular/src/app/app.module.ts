@@ -11,6 +11,7 @@ import {NavComponent} from './nav/nav.component';
 import { appRoutes } from './routes';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     NavComponent,
     RegistrationComponent,
     HomePageComponent,
+    LoginComponent,
    ],
   providers: [
 
