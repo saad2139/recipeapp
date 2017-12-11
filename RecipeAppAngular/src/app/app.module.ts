@@ -14,7 +14,7 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { CategoriesService } from './services/categories.service';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { ProfileComponent } from './profile/profile.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -31,7 +31,7 @@ import { ProfileComponent } from './profile/profile.component';
     RecipeComponent,
     RegistrationComponent,
     HomePageComponent,
-    ProfileComponent,
+    LoginComponent,
    ],
   providers: [
     CategoriesService
