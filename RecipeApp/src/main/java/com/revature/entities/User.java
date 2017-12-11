@@ -24,7 +24,9 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "subscriber_publisher", joinColumns = @JoinColumn(name="subscriber_id"), inverseJoinColumns = @JoinColumn(name = "publisher_id"))
     private Set<User> following_list;
-
+    
+    @OneToMany(mappedBy="creator", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Recipe> recipesList;
 
 	public User() {
 		super();
@@ -33,7 +35,7 @@ public class User {
 
 
 	public User(int id, String username, String password, String email, String first_name, String last_name, Role role,
-			Set<User> following_list) {
+			Set<User> following_list, Set<Recipe>recipeList) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -43,16 +45,19 @@ public class User {
 		this.last_name = last_name;
 		this.role = role;
 		this.following_list = following_list;
+		this.recipesList = recipeList;
 	}
+
+
+	
 
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
 				+ ", first_name=" + first_name + ", last_name=" + last_name + ", role=" + role + ", following_list="
-				+ following_list + "]";
+				+ following_list + ", recipesList=" + recipesList + "]";
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -64,6 +69,7 @@ public class User {
 		result = prime * result + id;
 		result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((recipesList == null) ? 0 : recipesList.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -106,6 +112,11 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
+		if (recipesList == null) {
+			if (other.recipesList != null)
+				return false;
+		} else if (!recipesList.equals(other.recipesList))
+			return false;
 		if (role == null) {
 			if (other.role != null)
 				return false;
@@ -117,6 +128,16 @@ public class User {
 		} else if (!username.equals(other.username))
 			return false;
 		return true;
+	}
+
+
+	public Set<Recipe> getRecipesList() {
+		return recipesList;
+	}
+
+
+	public void setRecipesList(Set<Recipe> recipesList) {
+		this.recipesList = recipesList;
 	}
 
 

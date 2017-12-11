@@ -2,6 +2,7 @@ package com.revature.controllers;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,8 @@ import com.revature.services.RecipeService;
 @RequestMapping("recipe")
 @CrossOrigin(allowCredentials="true", origins="http://localhost:4200")//angular
 public class RecipeController {
-	
+	private Logger log = Logger.getRootLogger();
+
 	@Autowired
 	private RecipeService rs;
 	
@@ -28,6 +30,7 @@ public class RecipeController {
 	
 	@PostMapping("addRecipe")
 	public Recipe addRecipe(@RequestBody Recipe r) {
+		log.trace("recipe sent" + r);
 		return rs.addRecipe(r);
 	}
 }

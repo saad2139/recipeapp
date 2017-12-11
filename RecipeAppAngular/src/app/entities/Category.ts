@@ -2,6 +2,6 @@ export class Category {
     categoryId: Number;
     categoryName: String;
 
-    constructor() {
+    constructor(categoryId, categoryName) {
     }
 }

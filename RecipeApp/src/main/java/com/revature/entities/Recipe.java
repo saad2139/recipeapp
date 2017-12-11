@@ -38,7 +38,7 @@ public class Recipe {
 	private Difficulty difficulty;
 
 	// Many recipes are created by the user
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private User creator;
 	

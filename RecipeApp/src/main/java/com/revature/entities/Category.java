@@ -22,55 +22,31 @@ public class Category {
 	@ManyToMany(mappedBy = "categories")
 	private Set<Recipe> recipes;
 
+
 	public Category() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Category(int recipeId, String categoryName, Set<Recipe> recipes) {
+
+	public Category(int categoryId, String categoryName, Set<Recipe> recipes) {
 		super();
-		this.categoryId = recipeId;
+		this.categoryId = categoryId;
 		this.categoryName = categoryName;
 		this.recipes = recipes;
 	}
-	public Category(int recipeId, String categoryName) {
-		super();
-		this.categoryId = recipeId;
-		this.categoryName = categoryName;
-	}
-	public int getRecipeId() {
-		return categoryId;
-	}
 
-	public void setRecipeId(int recipeId) {
-		this.categoryId = recipeId;
-	}
-
-	public String getCategoryName() {
-		return categoryName;
-	}
-
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
-	}
-
-	public Set<Recipe> getRecipes() {
-		return recipes;
-	}
-
-	public void setRecipes(Set<Recipe> recipes) {
-		this.recipes = recipes;
-	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((categoryName == null) ? 0 : categoryName.hashCode());
 		result = prime * result + categoryId;
+		result = prime * result + ((categoryName == null) ? 0 : categoryName.hashCode());
 		result = prime * result + ((recipes == null) ? 0 : recipes.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -81,12 +57,12 @@ public class Category {
 		if (getClass() != obj.getClass())
 			return false;
 		Category other = (Category) obj;
+		if (categoryId != other.categoryId)
+			return false;
 		if (categoryName == null) {
 			if (other.categoryName != null)
 				return false;
 		} else if (!categoryName.equals(other.categoryName))
-			return false;
-		if (categoryId != other.categoryId)
 			return false;
 		if (recipes == null) {
 			if (other.recipes != null)
@@ -96,10 +72,13 @@ public class Category {
 		return true;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Category [categoryId=" + categoryId + ", categoryName=" + categoryName + ", recipes=" + recipes + "]";
 	}
+
+	
 	
 	
 }
