@@ -16,6 +16,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RecipesService } from './services/recipes.service';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { ProfileComponent } from './profile/profile.component';
     ProfileComponent
    ],
   providers: [
-    CategoriesService
+    CategoriesService,
+    RecipesService,
    ],
   bootstrap: [AppComponent]
 })

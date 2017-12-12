@@ -23,15 +23,14 @@ public class RecipeRepoHibernate implements RecipeRepo {
 	public List<Recipe> findByUserId(int id) {
 		Session session = sf.getCurrentSession();
 		Criteria cr = session.createCriteria(Recipe.class);
-		cr.add(Restrictions.eq("id", id));
+		cr.add(Restrictions.eq("user_id", id));
 		return (List<Recipe>)cr.list();
 	}
 
 	@Override
 	@Transactional
 	public List<Recipe> findAll() {
-		return sf.getCurrentSession().createCriteria(Recipe.class).list();
-		
+		return (List<Recipe>)sf.getCurrentSession().createCriteria(Recipe.class).list();
 	}
 
 	@Override

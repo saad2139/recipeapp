@@ -3,11 +3,12 @@ package com.revature.repositories;
 import java.util.List;
 
 import com.revature.entities.Recipe;
+import com.revature.entities.User;
 
 public interface RecipeRepo {
 	
 	//view recipes based on user id
-	List<Recipe> findByUserId(int id);
+	List<Recipe> findByUserId(int u);
 	
 	//view all recipes
 	List<Recipe> findAll();	

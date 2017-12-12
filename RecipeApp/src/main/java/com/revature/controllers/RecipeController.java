@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Recipe;
+import com.revature.entities.User;
 import com.revature.services.RecipeService;
 
 @RestController
@@ -28,9 +29,13 @@ public class RecipeController {
 		byte[] bytes;
 		List<Recipe> resp = rs.viewAllRecipes();
 		for (Recipe recipe : resp) {
-			bytes = (recipe.getImage().getBytes(1, (int) recipe.getImage().length()));
+			//bytes = (recipe.getImage().getBytes(1, (int) recipe.getImage().length()));
 		}
 		return resp;
+	}
+	@PostMapping("userRecipes")
+	public List<Recipe> getUserRecipes(@RequestBody User u){
+		return rs.getUserRecipe(u.getId());
 	}
 
 	@PostMapping("addRecipe")

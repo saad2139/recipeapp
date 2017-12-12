@@ -21,9 +21,11 @@ public class User {
     private Role role;
     
     
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "subscriber_publisher", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "publisher_id"))
-    private Set<User> following_list;
+
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinTable(name = "subscriber_publisher", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "publisher_id"))
+//    private Set<User> following_list;
+
 
 
 	public User() {
@@ -42,7 +44,7 @@ public class User {
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.role = role;
-		this.following_list = following_list;
+//		this.following_list = following_list;
 	}
 
 
@@ -50,7 +52,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
 				+ ", first_name=" + first_name + ", last_name=" + last_name + ", role=" + role + ", following_list="
-				+ following_list + "]";
+				+  "]";
 	}
 
 
@@ -60,7 +62,6 @@ public class User {
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((first_name == null) ? 0 : first_name.hashCode());
-		result = prime * result + ((following_list == null) ? 0 : following_list.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
@@ -88,11 +89,6 @@ public class User {
 			if (other.first_name != null)
 				return false;
 		} else if (!first_name.equals(other.first_name))
-			return false;
-		if (following_list == null) {
-			if (other.following_list != null)
-				return false;
-		} else if (!following_list.equals(other.following_list))
 			return false;
 		if (id != other.id)
 			return false;
@@ -190,13 +186,5 @@ public class User {
 	}
 
 
-	public Set<User> getFollowing_list() {
-		return following_list;
-	}
-
-
-	public void setFollowing_list(Set<User> following_list) {
-		this.following_list = following_list;
-	}
 }
  
