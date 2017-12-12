@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class ProfileComponent implements OnInit {
 
   currentUser: any = {};
+  username: any;
   constructor() { }
 
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+   this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
-
 }

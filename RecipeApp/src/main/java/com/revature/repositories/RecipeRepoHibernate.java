@@ -31,6 +31,7 @@ public class RecipeRepoHibernate implements RecipeRepo {
 	@Transactional
 	public List<Recipe> findAll() {
 		return sf.getCurrentSession().createCriteria(Recipe.class).list();
+		
 	}
 
 	@Override

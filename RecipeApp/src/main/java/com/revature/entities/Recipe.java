@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
+@Table(name="Recipe")
 public class Recipe {
 	@Id
 	@Column(name = "recipe_id")
@@ -46,7 +47,7 @@ public class Recipe {
 	@JoinTable(
 			name = "recipe_ingredients",
 			joinColumns = { @JoinColumn(name = "recipe_id")},
-			inverseJoinColumns = { @JoinColumn (name = "ingridients_id")})
+			inverseJoinColumns = { @JoinColumn (name = "ingredients_id")})
 	private Set<Ingredient> ingredients;
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

@@ -2,8 +2,7 @@
 <div class="container target">
   <div class="row">
     <div class="col-sm-10">
-      <h1 class="">Username</h1>
-      <button type="button" class="btn btn-success">Follow!</button>
+      <h1 id="username">{{currentUser.username}}</h1>
       <br>
     </div>
   </div>
@@ -13,24 +12,23 @@
       <!--left col-->
       <ul class="list-group">
         <li class="list-group-item text-muted" contenteditable="false">Profile</li>
-        <li class="list-group-item text-right">
+        <li class="list-group-item">
           <span class="pull-left">
-            <strong class="">Real name:</strong>
+            <strong class="">Real name: {{currentUser.first_name}} {{currentUser.last_name}}</strong>
           </span>
         </li>
-        <li class="list-group-item text-right">
+        <li class="list-group-item">
           <span class="pull-left">
-            <strong class="">Email: </strong>
+            <strong class="">Email: {{currentUser.email}} </strong>
+          </span>
+        </li>
+        <li class="list-group-item">
+          <span class="pull-left">
+            <strong class="">Followers: </strong>
           </span>
         </li>
       </ul>
-      <ul class="list-group">
-        <li class="list-group-item text-right">
-          <span class="pull-left">
-            <strong class="">Following: </strong>
-          </span>
-        </li>
-      </ul>
+      <button type="button" class="btn btn-success btn-block text-center">Follow!</button>
     </div>
     <!--/col-3-->
 
@@ -84,61 +82,7 @@
         </div>
       </div>
     </div>
-
-
-   
-      <div class="comments">
-        <div class="comment-wrap">
-          <div class="photo">
-            <div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg')"></div>
-          </div>
-          <div class="comment-block">
-            <form action="">
-              <textarea name="" id="" cols="30" rows="3" placeholder="Add comment..."></textarea>
-            </form>
-          </div>
-        </div>
-
-        <div class="comment-wrap">
-          <div class="photo">
-            <div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg')"></div>
-          </div>
-          <div class="comment-block">
-            <p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto temporibus iste nostrum dolorem natus recusandae
-              incidunt voluptatum. Eligendi voluptatum ducimus architecto tempore, quaerat explicabo veniam fuga corporis
-              totam reprehenderit quasi sapiente modi tempora at perspiciatis mollitia, dolores voluptate. Cumque, corrupti?</p>
-            <div class="bottom-comment">
-              <div class="comment-date">Aug 24, 2014 @ 2:35 PM</div>
-              <ul class="comment-actions">
-                <li class="complain">Complain</li>
-                <li class="reply">Reply</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="comment-wrap">
-          <div class="photo">
-            <div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/felipenogs/128.jpg')"></div>
-          </div>
-          <div class="comment-block">
-            <p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto temporibus iste nostrum dolorem natus recusandae
-              incidunt voluptatum. Eligendi voluptatum ducimus architecto tempore, quaerat explicabo veniam fuga corporis
-              totam.</p>
-            <div class="bottom-comment">
-              <div class="comment-date">Aug 23, 2014 @ 10:32 AM</div>
-              <ul class="comment-actions">
-                <li class="complain">Complain</li>
-                <li class="reply">Reply</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
   </div>
-
-  </body>
   <script src="/plugins/bootstrap-select.min.js"></script>
   <script src="/codemirror/jquery.codemirror.js"></script>
   <script src="/beautifier.js"></script>
