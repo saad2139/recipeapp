@@ -15,6 +15,7 @@ import { CategoriesService } from './services/categories.service';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
+import { RecipesService } from './services/recipes.service';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { LoginComponent } from './login/login.component';
     LoginComponent,
    ],
   providers: [
-    CategoriesService
+    CategoriesService,
+    RecipesService,
    ],
   bootstrap: [AppComponent]
 })
