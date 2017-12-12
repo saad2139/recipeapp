@@ -18,7 +18,7 @@ public class Recipe {
 	private String recipeName;
 
 	// not sure how we are going to implement
-	private Blob image;
+	//private Blob image;
 
 	@Column(name = "cooking_time")
 	private double cookingTime;
@@ -67,7 +67,7 @@ public class Recipe {
 		super();
 		this.recipeId = recipeId;
 		this.recipeName = recipeName;
-		this.image = image;
+		//this.image = image;
 		this.cookingTime = cookingTime;
 		this.dateCreated = dateCreated;
 		this.directions = directions;
@@ -96,13 +96,13 @@ public class Recipe {
 		this.recipeName = recipeName;
 	}
 
-	public Blob getImage() {
-		return image;
-	}
-
-	public void setImage(Blob image) {
-		this.image = image;
-	}
+//	public Blob getImage() {
+//		return image;
+//	}
+//
+//	public void setImage(Blob image) {
+//		this.image = image;
+//	}
 
 	public double getCookingTime() {
 		return cookingTime;
@@ -189,7 +189,7 @@ public class Recipe {
 		result = prime * result + ((difficulty == null) ? 0 : difficulty.hashCode());
 		result = prime * result + ((directions == null) ? 0 : directions.hashCode());
 		result = prime * result + flag;
-		result = prime * result + ((image == null) ? 0 : image.hashCode());
+		//result = prime * result + ((image == null) ? 0 : image.hashCode());
 		result = prime * result + ((ingredients == null) ? 0 : ingredients.hashCode());
 		result = prime * result + recipeId;
 		result = prime * result + ((recipeName == null) ? 0 : recipeName.hashCode());
@@ -235,11 +235,11 @@ public class Recipe {
 			return false;
 		if (flag != other.flag)
 			return false;
-		if (image == null) {
-			if (other.image != null)
-				return false;
-		} else if (!image.equals(other.image))
-			return false;
+//		if (image == null) {
+//			if (other.image != null)
+//				return false;
+//		} else if (!image.equals(other.image))
+//			return false;
 		if (ingredients == null) {
 			if (other.ingredients != null)
 				return false;

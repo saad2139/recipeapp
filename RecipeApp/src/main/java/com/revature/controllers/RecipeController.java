@@ -15,7 +15,7 @@ import com.revature.services.RecipeService;
 
 @RestController
 @RequestMapping("recipe")
-@CrossOrigin(allowCredentials="true", origins="http://localhost:4200")//angular
+@CrossOrigin(allowCredentials="true", origins="http://localhost:4200")
 public class RecipeController {
 	
 	@Autowired
