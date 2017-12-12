@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
+@Table(name="Recipe")
 public class Recipe {
 	@Id
 	@Column(name = "recipe_id")

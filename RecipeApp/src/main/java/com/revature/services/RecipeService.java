@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.entities.Recipe;
+import com.revature.entities.User;
 import com.revature.repositories.RecipeRepo;
 
 @Service
@@ -21,6 +22,10 @@ public class RecipeService {
 
 	public Recipe addRecipe(Recipe r) {
 		return rr.save(r);
+	}
+	
+	public List<Recipe> getUserRecipe(int u){
+		return rr.findByUserId(u);
 	}
 	
 }

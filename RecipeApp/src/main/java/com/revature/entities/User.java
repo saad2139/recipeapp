@@ -21,9 +21,11 @@ public class User {
     private Role role;
     
     
+
 //    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    @JoinTable(name = "subscriber_publisher", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "publisher_id"))
 //    private Set<User> following_list;
+
 
 
 	public User() {

@@ -1,0 +1,89 @@
+<hr class="">
+<div class="container target">
+  <div class="row">
+    <div class="col-sm-10">
+      <h1 id="username">{{currentUser.username}}</h1>
+      <br>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-3">
+      <!--left col-->
+      <ul class="list-group">
+        <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+        <li class="list-group-item">
+          <span class="pull-left">
+            <strong class="">Real name: {{currentUser.first_name}} {{currentUser.last_name}}</strong>
+          </span>
+        </li>
+        <li class="list-group-item">
+          <span class="pull-left">
+            <strong class="">Email: {{currentUser.email}} </strong>
+          </span>
+        </li>
+        <li class="list-group-item">
+          <span class="pull-left">
+            <strong class="">Followers: </strong>
+          </span>
+        </li>
+      </ul>
+      <button type="button" class="btn btn-success btn-block text-center">Follow!</button>
+    </div>
+    <!--/col-3-->
+
+    <div class="col">
+      <div class="panel panel-default">
+        <h2>My Recipes</h2>
+      </div>
+      <div class="panel panel-default target">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-4">
+              <div class="thumbnail">
+                <img alt="300x200" src="https://cdn.dribbble.com/users/7760/screenshots/244512/5.png">
+                <div class="caption">
+                  <h3>
+                    Recipe 1
+                  </h3>
+                  <p>
+                    Description about recipe.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="thumbnail">
+                <img alt="300x200" src="https://cdn.dribbble.com/users/7760/screenshots/244512/5.png">
+                <div class="caption">
+                  <h3>
+                    Recipe 2
+                  </h3>
+                  <p>
+                    Description about recipe.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="thumbnail">
+                <img alt="300x200" src="https://cdn.dribbble.com/users/7760/screenshots/244512/5.png">
+                <div class="caption">
+                  <h3>
+                    Recipe 3
+                  </h3>
+                  <p>
+                    Description about recipe
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/plugins/bootstrap-select.min.js"></script>
+  <script src="/codemirror/jquery.codemirror.js"></script>
+  <script src="/beautifier.js"></script>
+</div>

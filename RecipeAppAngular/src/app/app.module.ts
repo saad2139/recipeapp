@@ -15,6 +15,7 @@ import { CategoriesService } from './services/categories.service';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 import { RecipesService } from './services/recipes.service';
 
 @NgModule({
@@ -33,6 +34,7 @@ import { RecipesService } from './services/recipes.service';
     RegistrationComponent,
     HomePageComponent,
     LoginComponent,
+    ProfileComponent
    ],
   providers: [
     CategoriesService,

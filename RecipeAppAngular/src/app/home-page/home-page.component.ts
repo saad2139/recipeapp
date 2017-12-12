@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { User } from '../entities/User';
-import {RecipesService} from '../services/recipes.service'
+import { RecipesService } from '../services/recipes.service'
 import { Recipe } from '../entities/Recipe';
 
 @Component({
@@ -12,23 +12,23 @@ import { Recipe } from '../entities/Recipe';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(public http: Http, @Inject(RecipesService) private rs: RecipesService)  { }
-  
+  constructor(public http: Http, @Inject(RecipesService) private rs: RecipesService) { }
+
   recipes: Array<Recipe>;
 
   ngOnInit() {
-   
-    this.http.get(environment.context + 'recipe/allRecipes',  { withCredentials: true })
-    .subscribe((succResp) => {
-      this.recipes = succResp.json();
-      this.recipes.sort((r1, r2) => r2.upvotes - r1.upvotes);
-      console.log();
-    });
+
+    this.http.get(environment.context + 'recipe/allRecipes', { withCredentials: true })
+      .subscribe((succResp) => {
+        this.recipes = succResp.json();
+        this.recipes.sort((r1, r2) => r2.upvotes - r1.upvotes);
+        console.log();
+      });
   }
 
   checkUser() {
     this.rs.getRecipes();
-    if (localStorage.getItem('currentUser') == '') return false;
+    if (localStorage.getItem('currentUser') === '') return false;
     else {
       // let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
       // this.followingList = currentUser.following_list;
@@ -40,6 +40,4 @@ export class HomePageComponent implements OnInit {
   }
 
 
-  }
-
-
+}
