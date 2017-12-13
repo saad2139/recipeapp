@@ -20,6 +20,7 @@ public class Ingredient {
 	
 //	@ManyToMany(mappedBy = "ingredients")
 //	private Set <Recipe> recipes;
+
 	
 	public Ingredient() {
 		super();
@@ -32,6 +33,14 @@ public class Ingredient {
 		this.name = name;
 		this.quantity = quantity;
 //		this.recipes = recipes;
+	}
+	
+
+	public Ingredient(int id, String name, String quantity) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.quantity = quantity;
 	}
 
 	@Override
@@ -60,7 +69,10 @@ public class Ingredient {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (quantity != other.quantity)
+		if (quantity == null) {
+			if (other.quantity != null)
+				return false;
+		} else if (!quantity.equals(other.quantity))
 			return false;
 //		if (recipes == null) {
 //			if (other.recipes != null)

@@ -2,9 +2,23 @@ package com.revature.entities;
 
 import java.sql.Blob;
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="Recipe")
@@ -39,7 +53,7 @@ public class Recipe {
 	private Difficulty difficulty;
 
 	// Many recipes are created by the user
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private User creator;
 	
@@ -50,12 +64,13 @@ public class Recipe {
 			inverseJoinColumns = { @JoinColumn (name = "ingredient_id")})
 	private Set<Ingredient> ingredients;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "recipe_categories",
-			joinColumns = { @JoinColumn(name = "recipe_id")},
-			inverseJoinColumns = { @JoinColumn (name = "category_id")})
-	Set<Category> categories;
+	@ManyToMany(mappedBy = "recipes", fetch = FetchType.EAGER, cascade= {CascadeType.ALL})
+//	@ManyToMany //
+//	@JoinTable(
+//			name = "recipe_categories",
+//			joinColumns = { @JoinColumn(name = "recipe_id")},
+//			inverseJoinColumns = { @JoinColumn (name = "category_id")})
+	private Set<Category> categories =  new HashSet<>();
 
 	public Recipe() {
 		super();
@@ -190,7 +205,6 @@ public class Recipe {
 		result = prime * result + ((difficulty == null) ? 0 : difficulty.hashCode());
 		result = prime * result + ((directions == null) ? 0 : directions.hashCode());
 		result = prime * result + flag;
-		//result = prime * result + ((image == null) ? 0 : image.hashCode());
 		result = prime * result + ((ingredients == null) ? 0 : ingredients.hashCode());
 		result = prime * result + recipeId;
 		result = prime * result + ((recipeName == null) ? 0 : recipeName.hashCode());
@@ -236,11 +250,6 @@ public class Recipe {
 			return false;
 		if (flag != other.flag)
 			return false;
-//		if (image == null) {
-//			if (other.image != null)
-//				return false;
-//		} else if (!image.equals(other.image))
-//			return false;
 		if (ingredients == null) {
 			if (other.ingredients != null)
 				return false;

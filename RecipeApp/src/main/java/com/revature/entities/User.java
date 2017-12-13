@@ -1,7 +1,21 @@
 package com.revature.entities;
 
 import java.util.Set;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="users")
 public class User {
@@ -20,13 +34,15 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
     
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinTable(name = "subscriber_publisher", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "publisher_id"))
+//    private Set<User> following_list;
     
+
 
 //    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    @JoinTable(name = "subscriber_publisher", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "publisher_id"))
 //    private Set<User> following_list;
-
-
 
 	public User() {
 		super();
@@ -35,7 +51,7 @@ public class User {
 
 
 	public User(int id, String username, String password, String email, String first_name, String last_name, Role role,
-			Set<User> following_list) {
+			Set<User> following_list, Set<User> subscriptions, Set<Recipe>recipeList) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -48,12 +64,27 @@ public class User {
 	}
 
 
+	
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
 				+ ", first_name=" + first_name + ", last_name=" + last_name + ", role=" + role + ", following_list="
 				+  "]";
 	}
+
+
+
+
+//
+//	public Set<User> getSubscriptions() {
+//		return subscriptions;
+//	}
+//
+//
+//	public void setSubscriptions(Set<User> subscriptions) {
+//		this.subscriptions = subscriptions;
+//	}
 
 
 	@Override
@@ -65,7 +96,9 @@ public class User {
 		result = prime * result + id;
 		result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((recipesList == null) ? 0 : recipesList.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
+//		result = prime * result + ((subscriptions == null) ? 0 : subscriptions.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -102,17 +135,33 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
+		if (recipesList == null) {
+			if (other.recipesList != null)
+				return false;
+		} else if (!recipesList.equals(other.recipesList))
+			return false;
 		if (role == null) {
 			if (other.role != null)
 				return false;
 		} else if (!role.equals(other.role))
 			return false;
+
 		if (username == null) {
 			if (other.username != null)
 				return false;
 		} else if (!username.equals(other.username))
 			return false;
 		return true;
+	}
+
+
+	public Set<Recipe> getRecipesList() {
+		return recipesList;
+	}
+
+
+	public void setRecipesList(Set<Recipe> recipesList) {
+		this.recipesList = recipesList;
 	}
 
 
@@ -184,7 +233,6 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-
 
 }
  
