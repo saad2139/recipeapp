@@ -1,7 +1,9 @@
 export class Category {
     categoryId: Number;
     categoryName: String;
+    recipeId: Number;
 
-    constructor() {
+    constructor(categoryId, categoryName, recipeId) {
+
     }
 }

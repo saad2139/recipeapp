@@ -16,9 +16,14 @@ public class Ingredient {
 	@Column(name = "ingredient_name")
 	private String name;
 
-	private int quantity;
+	private String quantity;
 	
-	@ManyToMany(mappedBy = "ingredients")
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL})
+	@JoinTable(
+			name = "recipe_ingredients",
+			joinColumns = { @JoinColumn(name = "ingredients_id")},
+			inverseJoinColumns = { @JoinColumn (name = "recipe_id")})
+	//@ManyToMany(mappedBy = "ingredients")
 	private Set <Recipe> recipes;
 	
 	public Ingredient() {
@@ -26,12 +31,20 @@ public class Ingredient {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ingredient(int id, String name, int quantity, Set<Recipe> recipes) {
+	public Ingredient(int id, String name, String quantity, Set<Recipe> recipes) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.quantity = quantity;
 		this.recipes = recipes;
+	}
+	
+
+	public Ingredient(int id, String name, String quantity) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.quantity = quantity;
 	}
 
 	@Override
@@ -40,7 +53,7 @@ public class Ingredient {
 		int result = 1;
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + quantity;
+		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
 		result = prime * result + ((recipes == null) ? 0 : recipes.hashCode());
 		return result;
 	}
@@ -61,7 +74,10 @@ public class Ingredient {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (quantity != other.quantity)
+		if (quantity == null) {
+			if (other.quantity != null)
+				return false;
+		} else if (!quantity.equals(other.quantity))
 			return false;
 		if (recipes == null) {
 			if (other.recipes != null)
@@ -87,11 +103,11 @@ public class Ingredient {
 		this.name = name;
 	}
 
-	public int getQuantity() {
+	public String getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
 

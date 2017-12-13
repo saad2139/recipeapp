@@ -20,6 +20,10 @@ public class UserService {
 		return ur.registration(u);
 	}
 	
+	public int userId(String username, String password) {
+		return ur.userId(username, password);
+	}
+	
 
 
 }

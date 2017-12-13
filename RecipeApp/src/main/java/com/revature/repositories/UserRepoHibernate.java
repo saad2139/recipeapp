@@ -5,6 +5,7 @@ import java.net.URI;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -37,6 +38,18 @@ public class UserRepoHibernate implements UserRepo {
 	public User registration(User newUser) {
 		sf.getCurrentSession().save(newUser);
 		return newUser;
+	}
+
+	@Override
+	@Transactional
+	public int userId(String username, String password) {
+		Session session = sf.getCurrentSession();
+		Criteria cr = session.createCriteria(User.class)
+				.setProjection(Projections.id());
+		cr.add(Restrictions.eq("username", username));
+		cr.add(Restrictions.eq("password", password));
+		System.out.println(cr.uniqueResult()+"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		return (int) cr.uniqueResult();
 	}
 
 }
