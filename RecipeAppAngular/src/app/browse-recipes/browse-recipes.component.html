@@ -1,0 +1,18 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th (click)="sortByName()">Recipe</th>
+        <th (click)="sortByDifficulty()">Difficulty</th>
+        <th (click)="sortByLikes()">Likes</th>
+        <th>Categories</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class = "pointer" *ngFor="let recipe of this.recipes" (click)="this.rv.navigateToRecipe(recipe.recipeId)">
+        <td>{{recipe.recipeName}}</td>
+        <td>{{recipe.difficulty.difficulty_level}}</td>
+        <td>{{recipe.upvotes}}</td>
+        <td><div *ngFor="let category of recipe.categories">{{category.categoryName}} </div></td>
+      </tr>
+    </tbody>
+  </table>

@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { User } from '../entities/User';
 import { Recipe } from '../entities/Recipe';
 import { RecipeViewerService } from '../services/recipe-viewer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -12,7 +13,7 @@ import { RecipeViewerService } from '../services/recipe-viewer.service';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(public http: Http, @Inject(RecipeViewerService) private rv: RecipeViewerService) { }
+  constructor(public http: Http, @Inject(RecipeViewerService) private rv: RecipeViewerService, private router: Router) { }
 
   recipes: Array<Recipe>;
 
@@ -27,6 +28,7 @@ export class HomePageComponent implements OnInit {
   }
 
   checkUser() {
+<<<<<<< HEAD
 
     if (localStorage.getItem('currentUser') === '') {
 
@@ -39,7 +41,15 @@ export class HomePageComponent implements OnInit {
       // console.log(this.followingList);
       return true;
     }
+=======
+  
+    if (localStorage.getItem('currentUser') === '') return false;
+    else return true;
+    
+>>>>>>> master
   }
+
+  
 
 
 }

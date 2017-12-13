@@ -20,6 +20,7 @@ import { RecipeFilterPipe } from './pipes/recipe-filter.pipe';
 import { RecipeViewerComponent } from './recipe-viewer/recipe-viewer.component';
 import { RecipeViewerService } from './services/recipe-viewer.service';
 import { DirectionsPipe } from './directions-pipe';
+import { BrowseRecipesComponent } from './browse-recipes/browse-recipes.component';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { DirectionsPipe } from './directions-pipe';
     RecipeFilterPipe,
     RecipeViewerComponent,
     DirectionsPipe,
+    BrowseRecipesComponent,
    ],
   providers: [
     CategoriesService,

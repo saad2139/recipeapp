@@ -8,7 +8,7 @@ import { CategoriesService } from '../services/categories.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
-  category = { categoryName: ' ' };
+  category = { categoryName: ' '};
 
   categories: Array<Category>;
 
@@ -16,4 +16,9 @@ export class NavComponent {
   ngOnInit() {
     this.categoriesService.getCategories().subscribe(responseCategories => this.categories = responseCategories);
   }
+
+  checkUser() {
+      if (localStorage.getItem('currentUser') === '') return false;
+      else return true;
+    }
 }

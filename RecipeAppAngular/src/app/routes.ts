@@ -5,6 +5,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RecipeViewerComponent } from './recipe-viewer/recipe-viewer.component';
+import { BrowseRecipesComponent } from './browse-recipes/browse-recipes.component';
 
 export const appRoutes: Routes = [
   // routes go here
@@ -19,6 +20,10 @@ export const appRoutes: Routes = [
   {
     path: 'viewRecipe',
     component: RecipeViewerComponent
+  },
+  {
+    path: 'browseRecipes',
+    component: BrowseRecipesComponent
   },
   {
     path: 'recipe',
