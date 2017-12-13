@@ -13,14 +13,14 @@ export class ProfileComponent implements OnInit {
   constructor(private http: Http) { }
 
   ngOnInit() {
-   this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-   this.http.post(environment.context + 'users/register', this.currentUser, { withCredentials: true })
-   .subscribe((succResp) => {
-     if (succResp.text() !== '') {
-       alert('Here are the user recipes');
-     } else {
-       alert('failed to get user recipes');
-     }
-   });
+  //  this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  //  this.http.post(environment.context + 'users/login', this.currentUser, { withCredentials: true })
+  //  .subscribe((succResp) => {
+  //    if (succResp.text() !== '') {
+  //      alert('Here are the user recipes');
+  //    } else {
+  //      alert('failed to get user recipes');
+  //    }
+  //  });
   }
 }

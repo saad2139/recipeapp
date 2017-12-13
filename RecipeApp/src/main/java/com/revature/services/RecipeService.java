@@ -27,5 +27,10 @@ public class RecipeService {
 	public List<Recipe> getUserRecipe(int u){
 		return rr.findByUserId(u);
 	}
+
+	public Recipe getRecipeById(int id) {
+		return rr.getRecipeById(id);
+	}
+
 	
 }

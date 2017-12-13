@@ -4,6 +4,7 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RecipeViewerComponent } from './recipe-viewer/recipe-viewer.component';
 
 export const appRoutes: Routes = [
   // routes go here
@@ -16,6 +17,10 @@ export const appRoutes: Routes = [
     component: HomePageComponent
   },
   {
+    path: 'viewRecipe',
+    component: RecipeViewerComponent
+  },
+  {
     path: 'recipe',
     component: RecipeComponent,
     children: [
@@ -24,6 +29,16 @@ export const appRoutes: Routes = [
         component: AddRecipeComponent
       }
     ]
+  },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: '/home',
+    pathMatch: 'full'
   }
 ];
 

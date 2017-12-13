@@ -4,23 +4,29 @@ import 'rxjs/add/operator/map';
 import { Category } from '../entities/Category';
 import { Recipe } from '../entities/Recipe';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 
 @Injectable()
-export class RecipesService {
+export class RecipeViewerService {
 
-  constructor(private http: Http) {
+    id: Number;
+
+  constructor(private http: Http, private router: Router) {
 
   }
 
   ngOnInit() {
-      this.getRecipes();
+      
   }
 
-  recipes: Array<Recipe>;
+  navigateToRecipe(id) {
+    console.log(id);
+    this.id = id;
+    this.router.navigate(['/viewRecipe/']);
+  }
+
   
 
-  getRecipes() {
-
-  }
+  
 }
