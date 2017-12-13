@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { User } from '../entities/User';
+import { RecipesService } from '../services/recipes.service';
 import { Recipe } from '../entities/Recipe';
 import { RecipeViewerService } from '../services/recipe-viewer.service';
 

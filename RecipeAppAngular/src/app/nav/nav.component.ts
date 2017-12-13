@@ -8,7 +8,7 @@ import { CategoriesService } from '../services/categories.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
-  category = {categoryName: ' '};
+  category = { categoryName: ' ' };
 
   categories: Array<Category>;
 
