@@ -31,7 +31,6 @@
       <button type="button" class="btn btn-success btn-block text-center">Follow!</button>
     </div>
     <!--/col-3-->
-
     <div class="col">
       <div class="panel panel-default">
         <h2>My Recipes</h2>
@@ -39,42 +38,13 @@
       <div class="panel panel-default target">
         <div class="panel-body">
           <div class="row">
-            <div class="col-4">
+            <div class="col-4" *ngFor='let recipe of (userRecipes | recipeFilter: this.currentUser.id)'>
               <div class="thumbnail">
-                <img alt="300x200" src="https://cdn.dribbble.com/users/7760/screenshots/244512/5.png">
+                <img alt="100x100" src="https://cdn.dribbble.com/users/7760/screenshots/244512/5.png">
                 <div class="caption">
                   <h3>
-                    Recipe 1
+                      {{recipe.recipeName}}
                   </h3>
-                  <p>
-                    Description about recipe.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="thumbnail">
-                <img alt="300x200" src="https://cdn.dribbble.com/users/7760/screenshots/244512/5.png">
-                <div class="caption">
-                  <h3>
-                    Recipe 2
-                  </h3>
-                  <p>
-                    Description about recipe.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="thumbnail">
-                <img alt="300x200" src="https://cdn.dribbble.com/users/7760/screenshots/244512/5.png">
-                <div class="caption">
-                  <h3>
-                    Recipe 3
-                  </h3>
-                  <p>
-                    Description about recipe
-                  </p>
                 </div>
               </div>
             </div>

@@ -17,6 +17,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RecipesService } from './services/recipes.service';
+import { RecipeFilterPipe } from './pipes/recipe-filter.pipe';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import { RecipesService } from './services/recipes.service';
     HttpModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
   ],
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { RecipesService } from './services/recipes.service';
     RegistrationComponent,
     HomePageComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    RecipeFilterPipe
    ],
   providers: [
     CategoriesService,

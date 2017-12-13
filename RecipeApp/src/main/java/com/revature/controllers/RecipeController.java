@@ -33,10 +33,10 @@ public class RecipeController {
 		}
 		return resp;
 	}
-	@PostMapping("userRecipes")
-	public List<Recipe> getUserRecipes(@RequestBody User u){
-		return rs.getUserRecipe(u.getId());
-	}
+//	@PostMapping("userRecipes")
+//	public List<Recipe> getUserRecipes(@RequestBody User u){
+//		return rs.getUserRecipe(46);
+//	}
 
 	@PostMapping("addRecipe")
 	public Recipe addRecipe(@RequestBody Recipe r) {
