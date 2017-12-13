@@ -8,7 +8,7 @@ export class Recipe {
     recipeName: String;
     cookingTime: Number;
     dateCreated: Date;
-    directions: String;
+    directions: string;
     upvotes: number;
     flag: boolean;
     difficulty: Difficulty;
