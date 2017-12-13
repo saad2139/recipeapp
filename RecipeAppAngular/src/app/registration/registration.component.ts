@@ -39,5 +39,13 @@ export class RegistrationComponent implements OnInit {
         }
       });
   }
+
+  checkUser() {
+    if (localStorage.getItem('currentUser') === '') {
+      return false;
+    }else {
+      return true;
+    }
+  }
 }
 

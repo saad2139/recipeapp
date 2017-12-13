@@ -49,4 +49,4 @@
     </div>
 </ng-template>
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Register</button>
+<button class="btn btn-lg btn-outline-primary pointer" (click)="open(content)" *ngIf="!this.checkUser()">Register</button>

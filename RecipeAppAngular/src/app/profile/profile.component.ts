@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from '../../environments/environment';
-import { RecipesService } from '../services/recipes.service';
 import { Recipe } from '../entities/Recipe';
 
 @Component({

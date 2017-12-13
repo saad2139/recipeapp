@@ -2,9 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { User } from '../entities/User';
-import { RecipesService } from '../services/recipes.service';
 import { Recipe } from '../entities/Recipe';
 import { RecipeViewerService } from '../services/recipe-viewer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -13,7 +13,7 @@ import { RecipeViewerService } from '../services/recipe-viewer.service';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(public http: Http, @Inject(RecipeViewerService) private rv: RecipeViewerService) { }
+  constructor(public http: Http, @Inject(RecipeViewerService) private rv: RecipeViewerService, private router: Router) { }
 
   recipes: Array<Recipe>;
 
@@ -30,15 +30,11 @@ export class HomePageComponent implements OnInit {
   checkUser() {
   
     if (localStorage.getItem('currentUser') === '') return false;
-    else {
-      // let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
-      // this.followingList = currentUser.following_list;
-      // console.log(JSON.parse(localStorage.getItem('currentUser')));
-      // console.log(currentUser);
-      // console.log(this.followingList);
-      return true;
-    }
+    else return true;
+    
   }
+
+  
 
 
 }

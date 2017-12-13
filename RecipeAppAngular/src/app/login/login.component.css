@@ -1,0 +1,12 @@
+.navbarText{
+    color: white;
+}
+
+.pad {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.pointer {
+    cursor: pointer;
+}
