@@ -18,7 +18,7 @@ public class Recipe {
 	private String recipeName;
 
 	// not sure how we are going to implement
-	private Blob image;
+	private String image;
 
 	@Column(name = "cooking_time")
 	private double cookingTime;
@@ -54,14 +54,14 @@ public class Recipe {
 			name = "recipe_categories",
 			joinColumns = { @JoinColumn(name = "recipe_id")},
 			inverseJoinColumns = { @JoinColumn (name = "category_id")})
-	Set<Category> categories;
+	private Set<Category> categories;
 
 	public Recipe() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Recipe(int recipeId, String recipeName, Blob image, double cookingTime, Date dateCreated, String directions,
+	public Recipe(int recipeId, String recipeName, String image, double cookingTime, Date dateCreated, String directions,
 			int upvotes, int flag, Difficulty difficulty, User creator, Set<Ingredient> ingridients,
 			Set<Category> categories) {
 		super();
@@ -96,11 +96,11 @@ public class Recipe {
 		this.recipeName = recipeName;
 	}
 
-	public Blob getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(Blob image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 

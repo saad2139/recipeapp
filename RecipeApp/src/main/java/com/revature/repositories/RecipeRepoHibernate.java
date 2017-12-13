@@ -53,5 +53,4 @@ public class RecipeRepoHibernate implements RecipeRepo {
 		sf.getCurrentSession().save(r);
 		return r;
 	}
-
 }
