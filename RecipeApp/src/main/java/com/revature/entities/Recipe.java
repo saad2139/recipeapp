@@ -78,7 +78,7 @@ public class Recipe {
 	}
 	
 	public Recipe(int recipeId, String recipeName, Blob image, double cookingTime, Date dateCreated, String directions,
-			int upvotes, int flag, Difficulty difficulty, User creator, Set<Ingredient> ingridients,
+			int upvotes, int flag, Difficulty difficulty, User creator, Set<Ingredient> ingredients,
 			Set<Category> categories) {
 		super();
 		this.recipeId = recipeId;
@@ -91,7 +91,7 @@ public class Recipe {
 		this.flag = flag;
 		this.difficulty = difficulty;
 		this.creator = creator;
-		this.ingredients = ingridients;
+		this.ingredients = ingredients;
 		this.categories = categories;
 	}
 
@@ -176,12 +176,12 @@ public class Recipe {
 		this.creator = creator;
 	}
 
-	public Set<Ingredient> getIngridients() {
+	public Set<Ingredient> getingredients() {
 		return ingredients;
 	}
 
-	public void setIngredients(Set<Ingredient> ingridients) {
-		this.ingredients = ingridients;
+	public void setingredients(Set<Ingredient> ingredients) {
+		this.ingredients = ingredients;
 	}
 
 	public Set<Category> getCategories() {

@@ -18,13 +18,9 @@ public class Ingredient {
 
 	private String quantity;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL})
-	@JoinTable(
-			name = "recipe_ingredients",
-			joinColumns = { @JoinColumn(name = "ingredients_id")},
-			inverseJoinColumns = { @JoinColumn (name = "recipe_id")})
-	//@ManyToMany(mappedBy = "ingredients")
-	private Set <Recipe> recipes;
+//	@ManyToMany(mappedBy = "ingredients")
+//	private Set <Recipe> recipes;
+
 	
 	public Ingredient() {
 		super();
@@ -36,7 +32,7 @@ public class Ingredient {
 		this.id = id;
 		this.name = name;
 		this.quantity = quantity;
-		this.recipes = recipes;
+//		this.recipes = recipes;
 	}
 	
 
@@ -53,8 +49,7 @@ public class Ingredient {
 		int result = 1;
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
-		result = prime * result + ((recipes == null) ? 0 : recipes.hashCode());
+//		result = prime * result + ((recipes == null) ? 0 : recipes.hashCode());
 		return result;
 	}
 
@@ -79,11 +74,11 @@ public class Ingredient {
 				return false;
 		} else if (!quantity.equals(other.quantity))
 			return false;
-		if (recipes == null) {
-			if (other.recipes != null)
-				return false;
-		} else if (!recipes.equals(other.recipes))
-			return false;
+//		if (recipes == null) {
+//			if (other.recipes != null)
+//				return false;
+//		} else if (!recipes.equals(other.recipes))
+//			return false;
 		return true;
 	}
 
@@ -111,17 +106,17 @@ public class Ingredient {
 		this.quantity = quantity;
 	}
 
-	public Set<Recipe> getRecipes() {
-		return recipes;
-	}
-
-	public void setRecipes(Set<Recipe> recipes) {
-		this.recipes = recipes;
-	}
+//	public Set<Recipe> getRecipes() {
+//		return recipes;
+//	}
+//
+//	public void setRecipes(Set<Recipe> recipes) {
+//		this.recipes = recipes;
+//	}
 
 	@Override
 	public String toString() {
-		return "Ingredient [id=" + id + ", name=" + name + ", quantity=" + quantity + ", recipes=" + recipes + "]";
+		return "Ingredient [id=" + id + ", name=" + name + ", quantity=" + quantity + ", recipes=" +"]";
 	}
 	
 	
