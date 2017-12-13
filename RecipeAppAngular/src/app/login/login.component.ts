@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     password: ''
   };
 
-  constructor(public http: Http, private router: Router ) { }
+  constructor(public http: Http, private router: Router) { }
 
   ngOnInit() {
   }
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   checkUser() {
     if (localStorage.getItem('currentUser') === '') {
       return false;
-    }else {
+    } else {
       return true;
     }
   }
@@ -46,9 +46,9 @@ export class LoginComponent implements OnInit {
           console.log('login successful. Saving user to local storage: ' + successResponse.text());
           localStorage.setItem('currentUser', JSON.stringify(successResponse.json()));
           this.router.navigate(['/profile']);
+        } else {
+          alert('Credentials incorrect.');
         }
-        else alert('Credentials incorrect.')
-
       },
       (failResponse) => {
         alert('Failed to establish connection with server.');
