@@ -54,4 +54,13 @@ public class RecipeRepoHibernate implements RecipeRepo {
 		return r;
 	}
 
+	@Override
+	@Transactional
+	public Recipe getRecipeById(int id) {
+		Session session = sf.getCurrentSession();
+		Criteria cr = session.createCriteria(Recipe.class);
+		cr.add(Restrictions.eq("recipeId", id));
+		return (Recipe) cr.uniqueResult();
+	}
+
 }
