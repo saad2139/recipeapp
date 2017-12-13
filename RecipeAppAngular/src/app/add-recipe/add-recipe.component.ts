@@ -24,6 +24,7 @@ export class AddRecipeComponent implements OnInit {
 
   newIngredient = new Ingredient();
   recipeCategories: Array<Category> = [];
+  recipeIngredients: Array<Ingredient> = [];
 
   // user
 
@@ -39,7 +40,7 @@ export class AddRecipeComponent implements OnInit {
     difficulty: this.difficulties[0],
     creator: {id: 162, username: 'bcrocker', password: 'cooking',
       email: 'betty@crocker.com', first_name: 'Betty', last_name: 'Croker', role_id: 1 },
-    ingredients: [],
+    ingredients: this.recipeIngredients,
     categories: this.recipeCategories,
   };
 
@@ -61,7 +62,9 @@ export class AddRecipeComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     alert(JSON.stringify(this.recipe));
+    console.log(this.recipe.ingredients);
     // console.log(JSON.parse(localStorage.getItem('currentUser')));
+
     this.http.post(environment.context + 'recipe/addRecipe', this.recipe, {withCredentials: true})
       .subscribe((succResp) => {
         if (succResp.text() !== '') {

@@ -22,7 +22,7 @@ public class Category {
 	@Column(name = "category_name")
 	private String categoryName;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "recipe_categories",
 			joinColumns = { @JoinColumn(name = "category_id")},

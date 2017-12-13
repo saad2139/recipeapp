@@ -17,6 +17,8 @@ import com.revature.entities.Ingredient;
 import com.revature.entities.Recipe;
 import com.revature.entities.User;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+
 @Repository
 @Transactional
 public class RecipeRepoHibernate implements RecipeRepo {
@@ -61,18 +63,32 @@ public class RecipeRepoHibernate implements RecipeRepo {
 		User creator = (User) session.load(User.class, id); //*******this works
 		//cannot save the recipe because the category and ingredients need the id of the recipe to be saved
 
-		Set<Ingredient> ingredientList = r.getIngridients();
+		//Set<Ingredient> ingredientList = r.getIngridients();
 
 		r.setCreator(creator); //*******Set the creator of the recipe
 		//r.setCategories(r.getCategories());
-		
-		Set<Category> catList =  r.getCategories();
-		for(Category c: catList) {
-			Category cat = (Category) session.get(Category.class, c.getCategoryId());
-			cat.getRecipes().add(r);
-		}
 //		
+//		Set<Category> catList =  r.getCategories();
+//		for(Category c: catList) {
+//			Category cat = (Category) session.get(Category.class, c.getCategoryId());
+//			Set<Recipe> listRe = cat.getRecipes();
+//			System.out.println("Current Recipes" + listRe + "---------------------------------------");
+//			if(listRe == null) {
+//				Set<Recipe> recipe = new HashSet<Recipe>();
+//				recipe.add(r);
+//			} else {
+//				listRe.add(r);
+//			}
+//			System.out.println("category================================================" + cat);
+//			cat.setRecipes(listRe);
+//			System.out.println("after categories are modified----------------------------------------");
+//		}
+		
+//		r.setCategories(r.getCategories());
+//		r.setIngredients(r.getIngridients());
+		
 		session.save(r);	//***save the recipe
+		r.getRecipeId();
 		return r;
 	}
 	
