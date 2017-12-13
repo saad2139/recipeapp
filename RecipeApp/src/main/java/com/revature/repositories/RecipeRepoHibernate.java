@@ -31,14 +31,14 @@ public class RecipeRepoHibernate implements RecipeRepo {
 	public List<Recipe> findByUserId(int id) {
 		Session session = sf.getCurrentSession();
 		Criteria cr = session.createCriteria(Recipe.class);
-		cr.add(Restrictions.eq("id", id));
+		cr.add(Restrictions.eq("creator", id));
 		return (List<Recipe>)cr.list();
 	}
 
 	@Override
 	@Transactional
 	public List<Recipe> findAll() {
-		return sf.getCurrentSession().createCriteria(Recipe.class).list();
+		return (List<Recipe>)sf.getCurrentSession().createCriteria(Recipe.class).list();
 	}
 
 	@Override
@@ -91,7 +91,6 @@ public class RecipeRepoHibernate implements RecipeRepo {
 		r.getRecipeId();
 		return r;
 	}
-	
 //	@Transactional
 //	private void saveCategories(int recipeId, Set<Category> categories) {
 //		Session session = sf.getCurrentSession();
@@ -103,5 +102,13 @@ public class RecipeRepoHibernate implements RecipeRepo {
 //		}
 //		System.out.println(catList + "________________________CATEGORIES_AFTER_SAVE_in categorie_________________");
 //	}
-	
+
+	@Override
+	@Transactional
+	public Recipe getRecipeById(int id) {
+		Session session = sf.getCurrentSession();
+		Criteria cr = session.createCriteria(Recipe.class);
+		cr.add(Restrictions.eq("recipeId", id));
+		return (Recipe) cr.uniqueResult();
+	}
 }

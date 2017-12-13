@@ -15,6 +15,12 @@ import { CategoriesService } from './services/categories.service';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { RecipesService } from './services/recipes.service';
+import { RecipeFilterPipe } from './pipes/recipe-filter.pipe';
+import { RecipeViewerComponent } from './recipe-viewer/recipe-viewer.component';
+import { RecipeViewerService } from './services/recipe-viewer.service';
+import { DirectionsPipe } from './directions-pipe';
 
 @NgModule({
   imports: [
@@ -22,7 +28,7 @@ import { LoginComponent } from './login/login.component';
     HttpModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
   ],
   declarations: [
     AppComponent,
@@ -32,9 +38,14 @@ import { LoginComponent } from './login/login.component';
     RegistrationComponent,
     HomePageComponent,
     LoginComponent,
+    ProfileComponent,
+    RecipeFilterPipe
+    RecipeViewerComponent,
+    DirectionsPipe,
    ],
   providers: [
-    CategoriesService
+    CategoriesService,
+    RecipeViewerService,
    ],
   bootstrap: [AppComponent]
 })

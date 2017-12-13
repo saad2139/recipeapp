@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -19,20 +20,29 @@ import com.revature.services.UserService;
 
 @RestController
 @RequestMapping("recipe")
-@CrossOrigin(allowCredentials="true", origins="http://localhost:4200")//angular
+@CrossOrigin(allowCredentials = "true", origins = "http://localhost:4200") // angular
 public class RecipeController {
 	private Logger log = Logger.getRootLogger();
 
 	@Autowired
 	private RecipeService rs;
+  
 	@Autowired
 	private UserService us;
-	
 	@GetMapping("allRecipes")
-	public List<Recipe> getAllRecipes(){
-		return rs.viewAllRecipes();
+	public List<Recipe> getAllRecipes() throws SQLException {
+		byte[] bytes;
+		List<Recipe> resp = rs.viewAllRecipes();
+		for (Recipe recipe : resp) {
+			//bytes = (recipe.getImage().getBytes(1, (int) recipe.getImage().length()));
+		}
+		return resp;
 	}
-	
+//	@PostMapping("userRecipes")
+//	public List<Recipe> getUserRecipes(@RequestBody User u){
+//		return rs.getUserRecipe(46);
+//	}
+
 	@PostMapping("addRecipe")
 	public Recipe addRecipe(@RequestBody Recipe r) {
 		int id = r.getCreator().getId();
@@ -40,5 +50,10 @@ public class RecipeController {
 				+ "*******************************************recipe sent****************" + r + 
 				"#######################################################" + id);
 		return rs.addRecipe(r,id);
+	}
+	
+	@GetMapping("{id}")
+	public Recipe getRecipeByRecipeId(@PathVariable int id) {
+		return rs.getRecipeById(id);
 	}
 }

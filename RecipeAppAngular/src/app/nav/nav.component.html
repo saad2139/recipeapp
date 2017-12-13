@@ -8,22 +8,20 @@
   <div class="collapse navbar-collapse" id="">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home
+        <a class="nav-link"  routerLink = "/home">Home
           <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" routerLink="/profile">Profile</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
       <li ngbDropdown class="d-inline-block">
         <a class="nav-link dropdown-toggle" id="" ngbDropdownToggle>Categories</a>
-        <div ngbDropdownMenu aria-labelledby="">
-          <button class="dropdown-item">Item one</button>
-          <button class="dropdown-item">Another Action</button>
-          <button class="dropdown-item">Something else is here</button>
+        <div ngbDropdownMenu aria-labelledby="" *ngFor="let category of categories">
+          <button class="dropdown-item">{{category}}</button>
         </div>
       </li>
     </ul>

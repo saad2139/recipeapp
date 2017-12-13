@@ -21,6 +21,7 @@ import javax.persistence.SequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
+@Table(name="Recipe")
 public class Recipe {
 	@Id
 	@Column(name = "recipe_id")
@@ -32,7 +33,7 @@ public class Recipe {
 	private String recipeName;
 
 	// not sure how we are going to implement
-	private Blob image;
+	//private Blob image;
 
 	@Column(name = "cooking_time")
 	private double cookingTime;
@@ -56,13 +57,12 @@ public class Recipe {
 	@JoinColumn(name = "user_id")
 	private User creator;
 	
-//	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL})
-//	@JoinTable(
-//			name = "recipe_ingredients",
-//			joinColumns = { @JoinColumn(name = "recipe_id")},
-//			inverseJoinColumns = { @JoinColumn (name = "ingredients_id")})
-	@ManyToMany(mappedBy = "recipes")
-	private Set<Ingredient> ingredients = new HashSet<>();
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL})
+	@JoinTable(
+			name = "recipe_ingredients",
+			joinColumns = { @JoinColumn(name = "recipe_id")},
+			inverseJoinColumns = { @JoinColumn (name = "ingredient_id")})
+	private Set<Ingredient> ingredients;
 	
 	@ManyToMany(mappedBy = "recipes", fetch = FetchType.EAGER, cascade= {CascadeType.ALL})
 //	@ManyToMany //
@@ -83,7 +83,7 @@ public class Recipe {
 		super();
 		this.recipeId = recipeId;
 		this.recipeName = recipeName;
-		this.image = image;
+		//this.image = image;
 		this.cookingTime = cookingTime;
 		this.dateCreated = dateCreated;
 		this.directions = directions;
@@ -112,13 +112,13 @@ public class Recipe {
 		this.recipeName = recipeName;
 	}
 
-	public Blob getImage() {
-		return image;
-	}
-
-	public void setImage(Blob image) {
-		this.image = image;
-	}
+//	public Blob getImage() {
+//		return image;
+//	}
+//
+//	public void setImage(Blob image) {
+//		this.image = image;
+//	}
 
 	public double getCookingTime() {
 		return cookingTime;

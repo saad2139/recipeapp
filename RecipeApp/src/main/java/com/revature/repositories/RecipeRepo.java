@@ -8,7 +8,7 @@ import com.revature.entities.User;
 public interface RecipeRepo {
 	
 	//view recipes based on user id
-	List<Recipe> findByUserId(int id);
+	List<Recipe> findByUserId(int u);
 	
 	//view all recipes
 	List<Recipe> findAll();	
@@ -21,5 +21,6 @@ public interface RecipeRepo {
 	
 	//add a new recipe
 	Recipe save(Recipe r, int id);
+	Recipe getRecipeById(int id);
 		
 }

@@ -38,10 +38,11 @@ public class User {
 //    @JoinTable(name = "subscriber_publisher", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "publisher_id"))
 //    private Set<User> following_list;
     
-//    @ManyToMany(mappedBy ="following_list", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private Set<User> subscriptions;
-    @OneToMany(mappedBy="creator", fetch = FetchType.EAGER)
-    private Set<Recipe> recipesList;
+
+
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinTable(name = "subscriber_publisher", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "publisher_id"))
+//    private Set<User> following_list;
 
 	public User() {
 		super();
@@ -60,8 +61,6 @@ public class User {
 		this.last_name = last_name;
 		this.role = role;
 //		this.following_list = following_list;
-//		this.subscriptions = subscriptions;
-		this.recipesList = recipeList;
 	}
 
 
@@ -71,7 +70,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
 				+ ", first_name=" + first_name + ", last_name=" + last_name + ", role=" + role + ", following_list="
-				+ ", subscriptions=" +", recipesList=" + recipesList + "]";
+				+  "]";
 	}
 
 
@@ -94,7 +93,6 @@ public class User {
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((first_name == null) ? 0 : first_name.hashCode());
-//		result = prime * result + ((following_list == null) ? 0 : following_list.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
@@ -235,8 +233,6 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-
-
 
 }
  
