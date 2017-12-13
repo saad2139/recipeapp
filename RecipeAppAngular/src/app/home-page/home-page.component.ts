@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { User } from '../entities/User';
-import { RecipesService } from '../services/recipes.service';
 import { Recipe } from '../entities/Recipe';
 import { RecipeViewerService } from '../services/recipe-viewer.service';
 
@@ -28,9 +27,11 @@ export class HomePageComponent implements OnInit {
   }
 
   checkUser() {
-  
-    if (localStorage.getItem('currentUser') === '') return false;
-    else {
+
+    if (localStorage.getItem('currentUser') === '') {
+
+      return false;
+    } else {
       // let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
       // this.followingList = currentUser.following_list;
       // console.log(JSON.parse(localStorage.getItem('currentUser')));

@@ -9,12 +9,12 @@ import { RecipeViewerComponent } from './recipe-viewer/recipe-viewer.component';
 export const appRoutes: Routes = [
   // routes go here
   {
-    path: 'profile',
-    component: ProfileComponent
-  },
-  {
     path: 'home',
     component: HomePageComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   },
   {
     path: 'viewRecipe',
