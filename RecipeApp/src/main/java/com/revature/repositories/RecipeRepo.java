@@ -20,9 +20,7 @@ public interface RecipeRepo {
 	List<Recipe> mostUpvoted();
 	
 	//add a new recipe
-	Recipe save(Recipe r);
-
+	Recipe save(Recipe r, int id);
 	Recipe getRecipeById(int id);
-
 		
 }
