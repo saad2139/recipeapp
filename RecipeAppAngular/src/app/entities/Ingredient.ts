@@ -1,6 +1,7 @@
 export class Ingredient {
-    ingredientName: String;
-    ingredientQuantity: Number;
+    name: String;
+    quantity: String;
+    recipeId: Number;
 
     constructor() {
     }

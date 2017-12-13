@@ -1,7 +1,21 @@
 package com.revature.entities;
 
 import java.util.Set;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="users")
 public class User {
@@ -20,12 +34,13 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
     
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinTable(name = "subscriber_publisher", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "publisher_id"))
+//    private Set<User> following_list;
     
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "subscriber_publisher", joinColumns = @JoinColumn(name="subscriber_id"), inverseJoinColumns = @JoinColumn(name = "publisher_id"))
-    private Set<User> following_list;
-    
-    @OneToMany(mappedBy="creator", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @ManyToMany(mappedBy ="following_list", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private Set<User> subscriptions;
+    @OneToMany(mappedBy="creator", fetch = FetchType.EAGER)
     private Set<Recipe> recipesList;
 
 	public User() {
@@ -35,7 +50,7 @@ public class User {
 
 
 	public User(int id, String username, String password, String email, String first_name, String last_name, Role role,
-			Set<User> following_list, Set<Recipe>recipeList) {
+			Set<User> following_list, Set<User> subscriptions, Set<Recipe>recipeList) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -44,20 +59,34 @@ public class User {
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.role = role;
-		this.following_list = following_list;
+//		this.following_list = following_list;
+//		this.subscriptions = subscriptions;
 		this.recipesList = recipeList;
 	}
 
 
 	
 
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
 				+ ", first_name=" + first_name + ", last_name=" + last_name + ", role=" + role + ", following_list="
-				+ following_list + ", recipesList=" + recipesList + "]";
+				+ ", subscriptions=" +", recipesList=" + recipesList + "]";
 	}
+
+
+
+
+//
+//	public Set<User> getSubscriptions() {
+//		return subscriptions;
+//	}
+//
+//
+//	public void setSubscriptions(Set<User> subscriptions) {
+//		this.subscriptions = subscriptions;
+//	}
+
 
 	@Override
 	public int hashCode() {
@@ -65,12 +94,13 @@ public class User {
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((first_name == null) ? 0 : first_name.hashCode());
-		result = prime * result + ((following_list == null) ? 0 : following_list.hashCode());
+//		result = prime * result + ((following_list == null) ? 0 : following_list.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((recipesList == null) ? 0 : recipesList.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
+//		result = prime * result + ((subscriptions == null) ? 0 : subscriptions.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -95,11 +125,6 @@ public class User {
 				return false;
 		} else if (!first_name.equals(other.first_name))
 			return false;
-		if (following_list == null) {
-			if (other.following_list != null)
-				return false;
-		} else if (!following_list.equals(other.following_list))
-			return false;
 		if (id != other.id)
 			return false;
 		if (last_name == null) {
@@ -122,6 +147,7 @@ public class User {
 				return false;
 		} else if (!role.equals(other.role))
 			return false;
+
 		if (username == null) {
 			if (other.username != null)
 				return false;
@@ -211,13 +237,6 @@ public class User {
 	}
 
 
-	public Set<User> getFollowing_list() {
-		return following_list;
-	}
 
-
-	public void setFollowing_list(Set<User> following_list) {
-		this.following_list = following_list;
-	}
 }
  

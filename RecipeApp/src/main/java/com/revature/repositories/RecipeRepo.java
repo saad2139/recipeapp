@@ -3,6 +3,7 @@ package com.revature.repositories;
 import java.util.List;
 
 import com.revature.entities.Recipe;
+import com.revature.entities.User;
 
 public interface RecipeRepo {
 	
@@ -19,6 +20,6 @@ public interface RecipeRepo {
 	List<Recipe> mostUpvoted();
 	
 	//add a new recipe
-	Recipe save(Recipe r);
+	Recipe save(Recipe r, int id);
 		
 }
