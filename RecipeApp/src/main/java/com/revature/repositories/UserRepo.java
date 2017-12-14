@@ -1,5 +1,6 @@
 package com.revature.repositories;
 
+import com.revature.entities.Recipe;
 import com.revature.entities.User;
 
 public interface UserRepo {
@@ -9,5 +10,7 @@ public interface UserRepo {
 	User registration(User newUser);
 	
 	int userId(String username, String password);
+
+	User getUser(int id);
 
 }

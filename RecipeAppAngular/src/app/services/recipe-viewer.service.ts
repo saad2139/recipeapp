@@ -17,7 +17,7 @@ export class RecipeViewerService {
   }
 
   ngOnInit() {
-      
+
   }
 
   navigateToRecipe(id) {

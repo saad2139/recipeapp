@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { Http } from '@angular/http';
 import { RecipeViewerService } from '../services/recipe-viewer.service';
 import { Recipe } from '../entities/Recipe';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-recipe-viewer',
@@ -11,12 +12,13 @@ import { Recipe } from '../entities/Recipe';
 })
 export class RecipeViewerComponent implements OnInit {
 
-  constructor(public http: Http, @Inject(RecipeViewerService) private rv: RecipeViewerService) { }
+  constructor(public http: Http, @Inject(RecipeViewerService) private rv: RecipeViewerService,
+  @Inject(ProfileService) private ps: ProfileService) { }
   id: number;
   recipe: Recipe;
 
   ngOnInit() {
-    this.http.get(environment.context + 'recipe/' + this.rv.id,  { withCredentials: true }).subscribe(
+    this.http.get(environment.context + 'recipe/' + this.rv.id, { withCredentials: true }).subscribe(
       (successResponse) => {
         this.recipe = successResponse.json();
         console.log(this.recipe);

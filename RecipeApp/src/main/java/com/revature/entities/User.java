@@ -10,48 +10,35 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
-    @Id
-    @Column(name = "user_id")
-    @SequenceGenerator(name = "userid_seq", sequenceName = "user_id_seq")
-    @GeneratedValue(generator = "userid_seq", strategy = GenerationType.AUTO)
-    private int id;
-    private String username;
-    private String password;
-    private String email;
-    private String first_name;
-    private String last_name;
-    
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "role_id")
-    private Role role;
-    
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinTable(name = "subscriber_publisher", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "publisher_id"))
-//    private Set<User> following_list;
-    
+	@Id
+	@Column(name = "user_id")
+	@SequenceGenerator(name = "userid_seq", sequenceName = "user_id_seq")
+	@GeneratedValue(generator = "userid_seq", strategy = GenerationType.AUTO)
+	private int id;
+	private String username;
+	private String password;
+	private String email;
+	private String first_name;
+	private String last_name;
 
-
-//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JoinTable(name = "subscriber_publisher", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "publisher_id"))
-//    private Set<User> following_list;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "role_id")
+	private Role role;
 
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public User(int id, String username, String password, String email, String first_name, String last_name, Role role,
-			Set<User> following_list, Set<User> subscriptions, Set<Recipe>recipeList) {
+			Set<User> following_list, Set<User> subscriptions, Set<Recipe> recipeList) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -60,32 +47,15 @@ public class User {
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.role = role;
-//		this.following_list = following_list;
+		// this.following_list = following_list;
 	}
-
-
-	
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
 				+ ", first_name=" + first_name + ", last_name=" + last_name + ", role=" + role + ", following_list="
-				+  "]";
+				+ "]";
 	}
-
-
-
-
-//
-//	public Set<User> getSubscriptions() {
-//		return subscriptions;
-//	}
-//
-//
-//	public void setSubscriptions(Set<User> subscriptions) {
-//		this.subscriptions = subscriptions;
-//	}
-
 
 	@Override
 	public int hashCode() {
@@ -97,11 +67,11 @@ public class User {
 		result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
-//		result = prime * result + ((subscriptions == null) ? 0 : subscriptions.hashCode());
+		// result = prime * result + ((subscriptions == null) ? 0 :
+		// subscriptions.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -147,74 +117,61 @@ public class User {
 			return false;
 		return true;
 	}
+
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
 	public String getUsername() {
 		return username;
 	}
-
 
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
-
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
 	public String getEmail() {
 		return email;
 	}
-
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
 	public String getFirst_name() {
 		return first_name;
 	}
-
 
 	public void setFirst_name(String first_name) {
 		this.first_name = first_name;
 	}
 
-
 	public String getLast_name() {
 		return last_name;
 	}
-
 
 	public void setLast_name(String last_name) {
 		this.last_name = last_name;
 	}
 
-
 	public Role getRole() {
 		return role;
 	}
-
 
 	public void setRole(Role role) {
 		this.role = role;
 	}
 
 }
- 
