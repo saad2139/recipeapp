@@ -1,0 +1,9 @@
+.image{
+    max-height:  250px;
+    max-width: 250px;
+    border-radius: 50%;
+}
+.container{
+    background-color: #e7e7e7
+    
+}

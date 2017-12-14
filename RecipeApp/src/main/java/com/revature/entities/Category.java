@@ -22,6 +22,7 @@ public class Category {
 	@Column(name = "category_name")
 	private String categoryName;
 	
+
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //ALL
 	@JoinTable(
 			name = "recipe_categories",
@@ -29,7 +30,7 @@ public class Category {
 			inverseJoinColumns = { @JoinColumn (name = "recipe_id")})
 //	@ManyToMany(mappedBy = "categories") //****
 	private Set<Recipe> recipes;
-	
+
 	public Category() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -47,7 +48,6 @@ public class Category {
 		super();
 		this.categoryId = categoryId;
 		this.categoryName = categoryName;
-		this.recipes = recipes;
 	}
 	
 	public int getCategoryId() {
@@ -76,22 +76,15 @@ public class Category {
 
 	//set recipes used to update the join table
 	public void setRecipes(Set<Recipe> recipes) {
-//		for(Recipe r : recipes) {
-//			if(!r.getCategories().contains(this)) {
-//				r.getCategories().add(this);
-//			}
-//		}
 		this.recipes = recipes;
 	}
 	
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + categoryId;
 		result = prime * result + ((categoryName == null) ? 0 : categoryName.hashCode());
-		result = prime * result + ((recipes == null) ? 0 : recipes.hashCode());
 		return result;
 	}
 
@@ -111,17 +104,12 @@ public class Category {
 				return false;
 		} else if (!categoryName.equals(other.categoryName))
 			return false;
-		if (recipes == null) {
-			if (other.recipes != null)
-				return false;
-		} else if (!recipes.equals(other.recipes))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Category [categoryId=" + categoryId + ", categoryName=" + categoryName + ", recipes=" + recipes + "]";
+		return "Category [categoryId=" + categoryId + ", categoryName=" + categoryName + ", recipes=" + "]";
 	}
 
 	

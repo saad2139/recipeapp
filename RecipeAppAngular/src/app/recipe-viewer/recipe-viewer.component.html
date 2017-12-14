@@ -16,17 +16,15 @@
     </div>
     <div class="col-sm-8 text-left line-breaker"> 
       <h1>{{this.recipe.recipeName}}</h1>
-      <p>INSERT PICTURE HERE</p>
+      <p><img [src]="this.recipe.image" class="image"/></p>
+      <p class="signature pointer">by {{this.recipe.creator.username}}</p>
       <hr>
       <h3>Cooking Directions</h3>
       <p>{{this.recipe.directions | directions}}</p>
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
-        <p>ADS</p>
-      </div>
-      <div class="well">
-        <p>ADS</p>
+        <p *ngFor="let category of this.recipe.categories"> {{category.categoryName}}</p>
       </div>
     </div>
   </div>

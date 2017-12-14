@@ -65,6 +65,7 @@ public class Recipe {
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "recipes", cascade = CascadeType.ALL)  //changed
 	private Set<Ingredient> ingredients;
 	
+
 	@ManyToMany(mappedBy = "recipes", fetch = FetchType.EAGER, cascade = CascadeType.ALL) //currently
 //	@ManyToMany 
 //	@JoinTable(
@@ -72,14 +73,6 @@ public class Recipe {
 //			joinColumns = { @JoinColumn(name = "recipe_id")},
 //			inverseJoinColumns = { @JoinColumn (name = "category_id")})
 	private Set<Category> categories;
-
-	public Set<Ingredient> getIngredients() {
-		return ingredients;
-	}
-
-	public void setIngredients(Set<Ingredient> ingredients) {
-		this.ingredients = ingredients;
-	}
 
 	public Recipe() {
 		super();
@@ -104,6 +97,14 @@ public class Recipe {
 		this.categories = categories;
 	}
 
+=======
+	@ManyToMany (fetch = FetchType.EAGER, cascade = { CascadeType.ALL})
+	@JoinTable(
+			name = "recipe_categories",
+			joinColumns = { @JoinColumn(name = "recipe_id")},
+			inverseJoinColumns = { @JoinColumn (name = "category_id")})
+	private Set<Category> categories;
+>>>>>>> refs/remotes/origin/master
 
 	public int getRecipeId() {
 		return recipeId;
@@ -165,6 +166,11 @@ public class Recipe {
 		return flag;
 	}
 
+	public Recipe() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public void setFlag(int flag) {
 		this.flag = flag;
 	}
@@ -185,13 +191,11 @@ public class Recipe {
 		this.creator = creator;
 	}
 
-	//join table
-	public void setJoinIngredients(Set<Ingredient> ingredients) {
-		for(Ingredient i : ingredients) {
-			if(!i.getRecipes().contains(this)) {
-				i.getRecipes().add(this);
-			}
-		}
+	public Set<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(Set<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
 
@@ -218,6 +222,14 @@ public class Recipe {
 	}
 
 	
+
+	@Override
+	public String toString() {
+		return "Recipe [recipeId=" + recipeId + ", recipeName=" + recipeName + ", image=" + image + ", cookingTime="
+				+ cookingTime + ", dateCreated=" + dateCreated + ", directions=" + directions + ", upvotes=" + upvotes
+				+ ", flag=" + flag + ", difficulty=" + difficulty + ", creator=" + creator + ", ingredients="
+				+ ingredients + ", categories=" + categories + "]";
+	}
 
 	@Override
 	public int hashCode() {
@@ -300,12 +312,25 @@ public class Recipe {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Recipe [recipeId=" + recipeId + ", recipeName=" + recipeName + ", cookingTime=" + cookingTime
-				+ ", dateCreated=" + dateCreated + ", directions=" + directions + ", upvotes=" + upvotes + ", flag="
-				+ flag + ", difficulty=" + difficulty + ", creator=" + creator + ", ingredients=" + ingredients
-				+ ", categories=" + categories + "]";
+	public Recipe(int recipeId, String recipeName, String image, double cookingTime, Date dateCreated,
+			String directions, int upvotes, int flag, Difficulty difficulty, User creator, Set<Ingredient> ingredients,
+			Set<Category> categories) {
+		super();
+		this.recipeId = recipeId;
+		this.recipeName = recipeName;
+		this.image = image;
+		this.cookingTime = cookingTime;
+		this.dateCreated = dateCreated;
+		this.directions = directions;
+		this.upvotes = upvotes;
+		this.flag = flag;
+		this.difficulty = difficulty;
+		this.creator = creator;
+		this.ingredients = ingredients;
+		this.categories = categories;
 	}
+	
+	
+
 	
 }
