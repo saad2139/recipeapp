@@ -2,7 +2,18 @@ package com.revature.entities;
 
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "ingredient")
@@ -17,9 +28,14 @@ public class Ingredient {
 	private String name;
 
 	private String quantity;
-	
-//	@ManyToMany(mappedBy = "ingredients")
-//	private Set <Recipe> recipes;
+	//************8
+//	@ManyToMany(mappedBy = "ingredients") --BEFORE
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)  //cascade all
+	@JoinTable(
+			name = "recipe_ingredients",
+			joinColumns = { @JoinColumn(name = "ingredient_id")},
+			inverseJoinColumns = { @JoinColumn (name = "recipe_id")})
+	private Set <Recipe> recipes;
 
 	
 	public Ingredient() {
@@ -106,13 +122,13 @@ public class Ingredient {
 		this.quantity = quantity;
 	}
 
-//	public Set<Recipe> getRecipes() {
-//		return recipes;
-//	}
-//
-//	public void setRecipes(Set<Recipe> recipes) {
-//		this.recipes = recipes;
-//	}
+	public Set<Recipe> getRecipes() {
+		return recipes;
+	}
+
+	public void setRecipes(Set<Recipe> recipes) {
+		this.recipes = recipes;
+	}
 
 	@Override
 	public String toString() {

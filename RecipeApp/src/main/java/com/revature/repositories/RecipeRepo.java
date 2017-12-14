@@ -1,7 +1,10 @@
 package com.revature.repositories;
 
 import java.util.List;
+import java.util.Set;
 
+import com.revature.entities.Category;
+import com.revature.entities.Ingredient;
 import com.revature.entities.Recipe;
 import com.revature.entities.User;
 
@@ -21,6 +24,5 @@ public interface RecipeRepo {
 	
 	//add a new recipe
 	Recipe save(Recipe r, int id);
-	Recipe getRecipeById(int id);
-		
+	Recipe getRecipeById(int id);		
 }

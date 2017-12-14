@@ -17,6 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -32,8 +33,7 @@ public class Recipe {
 	@Column(name = "recipe_name")
 	private String recipeName;
 
-	// not sure how we are going to implement
-	//private Blob image;
+	private String image;
 
 	@Column(name = "cooking_time")
 	private double cookingTime;
@@ -48,7 +48,7 @@ public class Recipe {
 	private int flag;
 
 	// A recipe as a level of difficulty
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "difficulty_id")
 	private Difficulty difficulty;
 
@@ -57,15 +57,16 @@ public class Recipe {
 	@JoinColumn(name = "user_id")
 	private User creator;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL})
-	@JoinTable(
-			name = "recipe_ingredients",
-			joinColumns = { @JoinColumn(name = "recipe_id")},
-			inverseJoinColumns = { @JoinColumn (name = "ingredient_id")})
+//	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)  //cascade all
+//	@JoinTable(
+//			name = "recipe_ingredients",
+//			joinColumns = { @JoinColumn(name = "recipe_id")},
+//			inverseJoinColumns = { @JoinColumn (name = "ingredient_id")})
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "recipes", cascade = CascadeType.ALL)  //changed
 	private Set<Ingredient> ingredients;
 	
-	@ManyToMany(mappedBy = "recipes", fetch = FetchType.EAGER, cascade= {CascadeType.ALL})
-//	@ManyToMany //
+	@ManyToMany(mappedBy = "recipes", fetch = FetchType.EAGER)
+//	@ManyToMany 
 //	@JoinTable(
 //			name = "recipe_categories",
 //			joinColumns = { @JoinColumn(name = "recipe_id")},
@@ -77,7 +78,7 @@ public class Recipe {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Recipe(int recipeId, String recipeName, Blob image, double cookingTime, Date dateCreated, String directions,
+	public Recipe(int recipeId, String recipeName, String image, double cookingTime, Date dateCreated, String directions,
 			int upvotes, int flag, Difficulty difficulty, User creator, Set<Ingredient> ingredients,
 			Set<Category> categories) {
 		super();
@@ -112,13 +113,13 @@ public class Recipe {
 		this.recipeName = recipeName;
 	}
 
-//	public Blob getImage() {
-//		return image;
-//	}
-//
-//	public void setImage(Blob image) {
-//		this.image = image;
-//	}
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	public double getCookingTime() {
 		return cookingTime;

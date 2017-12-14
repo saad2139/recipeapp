@@ -8,6 +8,7 @@ import javax.persistence.*;
 public class Difficulty {
 	@Id
 	@Column(name="difficulty_id")
+//	@OneToMany(mappedBy = "")
 	private int id;
 	
 	private String difficulty_level;

@@ -96,7 +96,7 @@ public class User {
 		result = prime * result + id;
 		result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((recipesList == null) ? 0 : recipesList.hashCode());
+	//	result = prime * result + ((recipesList == null) ? 0 : recipesList.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 //		result = prime * result + ((subscriptions == null) ? 0 : subscriptions.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
@@ -135,11 +135,11 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (recipesList == null) {
-			if (other.recipesList != null)
-				return false;
-		} else if (!recipesList.equals(other.recipesList))
-			return false;
+//		if (recipesList == null) {
+//			if (other.recipesList != null)
+//				return false;
+//		} else if (!recipesList.equals(other.recipesList))
+//			return false;
 		if (role == null) {
 			if (other.role != null)
 				return false;
@@ -154,15 +154,15 @@ public class User {
 		return true;
 	}
 
-
-	public Set<Recipe> getRecipesList() {
-		return recipesList;
-	}
-
-
-	public void setRecipesList(Set<Recipe> recipesList) {
-		this.recipesList = recipesList;
-	}
+//
+//	public Set<Recipe> getRecipesList() {
+//		return recipesList;
+//	}
+//
+//
+//	public void setRecipesList(Set<Recipe> recipesList) {
+//		this.recipesList = recipesList;
+//	}
 
 
 	public int getId() {
