@@ -10,12 +10,12 @@ import { BrowseRecipesComponent } from './browse-recipes/browse-recipes.componen
 export const appRoutes: Routes = [
   // routes go here
   {
-    path: 'profile',
-    component: ProfileComponent
-  },
-  {
     path: 'home',
     component: HomePageComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   },
   {
     path: 'viewRecipe',
@@ -26,14 +26,8 @@ export const appRoutes: Routes = [
     component: BrowseRecipesComponent
   },
   {
-    path: 'recipe',
-    component: RecipeComponent,
-    children: [
-      {
-        path: 'addRecipe',
-        component: AddRecipeComponent
-      }
-    ]
+    path: 'addRecipe',
+    component: AddRecipeComponent
   },
   {
     path: '',

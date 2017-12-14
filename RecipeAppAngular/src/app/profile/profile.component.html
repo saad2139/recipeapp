@@ -32,6 +32,8 @@
     </div>
     <!--/col-3-->
     <div class="col">
+      <button type="button" class="btn btn-success text-center" routerLink = "/addRecipe">Add New</button>
+      <button type="button" class="btn btn-danger text-center">Delete</button>
       <div class="panel panel-default">
         <h2>My Recipes</h2>
       </div>
@@ -40,11 +42,11 @@
           <div class="row">
             <div class="col-4" *ngFor='let recipe of (userRecipes | recipeFilter: this.currentUser.id)'>
               <div class="thumbnail">
-                <img alt="100x100" src="https://cdn.dribbble.com/users/7760/screenshots/244512/5.png">
+                <img class="image" src="https://cdn.dribbble.com/users/7760/screenshots/244512/5.png">
                 <div class="caption">
-                  <h3>
-                      {{recipe.recipeName}}
-                  </h3>
+                  <h5 (click)="this.rv.navigateToRecipe(this.recipe.recipeId)">
+                    {{recipe.recipeName}}
+                  </h5>
                 </div>
               </div>
             </div>

@@ -147,7 +147,6 @@ public class User {
 			return false;
 		return true;
 	}
-
 	public int getId() {
 		return id;
 	}
