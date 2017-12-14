@@ -12,44 +12,41 @@ import { CategoriesService } from '../services/categories.service';
   styleUrls: ['./browse-recipes.component.css']
 })
 export class BrowseRecipesComponent implements OnInit {
-  
+
   constructor(public http: Http, @Inject(RecipeViewerService) private rv: RecipeViewerService, private cs: CategoriesService) { }
-  
-    recipes: Array<Recipe>;
-  
-    ngOnInit() {
-  
-      this.http.get(environment.context + 'recipe/allRecipes', { withCredentials: true })
-        .subscribe((succResp) => {
-          this.recipes = succResp.json();
-          this.recipes.sort((r1, r2) => r2.upvotes - r1.upvotes);
 
-          if (this.cs.currentCategory) {
-            this.sortByCategory(this.cs.currentCategory);
-            this.cs.currentCategory = null;
-          }
-        });
+  recipes: Array<Recipe>;
+
+  ngOnInit() {
+
+    this.http.get(environment.context + 'recipe/allRecipes', { withCredentials: true })
+      .subscribe((succResp) => {
+        this.recipes = succResp.json();
+        this.recipes.sort((r1, r2) => r2.upvotes - r1.upvotes);
+
+        if (this.cs.currentCategory) {
+          this.sortByCategory(this.cs.currentCategory);
+          this.cs.currentCategory = null;
+        }
+      });
 
 
-    }
+  }
 
-    sortByName() {
-      this.recipes.sort((a,b) => a.recipeName > b.recipeName ? 1: -1);
-    }
+  sortByName() {
+    this.recipes.sort((a, b) => a.recipeName > b.recipeName ? 1 : -1);
+  }
 
-    sortByLikes() {
-      this.recipes.sort((a,b) => b.upvotes - a.upvotes);
-    }
+  sortByLikes() {
+    this.recipes.sort((a, b) => b.upvotes - a.upvotes);
+  }
 
-    sortByDifficulty() {
-      this.recipes.sort((a,b) => a.difficulty.id > b.difficulty.id ? 1 : -1);
-    }
+  sortByDifficulty() {
+    this.recipes.sort((a, b) => a.difficulty.id > b.difficulty.id ? 1 : -1);
+  }
 
-    sortByCategory(category: Category) {
-        let desiredId = category.categoryId;
-
-        
-    }
-    
+  sortByCategory(category: Category) {
+    let desiredId = category.categoryId;
+  }
 
 }

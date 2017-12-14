@@ -29,11 +29,6 @@ public class RecipeController {
 
 	@Autowired
 	private UserService us;
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> master
 	@GetMapping("allRecipes")
 	public List<Recipe> getAllRecipes() throws SQLException {
 		List<Recipe> resp = rs.viewAllRecipes();

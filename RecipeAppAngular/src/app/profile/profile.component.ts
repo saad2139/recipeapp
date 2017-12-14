@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit, DoCheck {
   currentUser = {};
   viewProfile = {};
   userRecipes: Array<Recipe>;
-  constructor(private http: Http, private ps: ProfileService) { }
+  constructor(private http: Http, private ps: ProfileService, private rv: RecipeViewerService) { }
   recipeFilter: any = { recipe: '' };
 
   ngOnInit() {
