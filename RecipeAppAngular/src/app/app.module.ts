@@ -21,6 +21,7 @@ import { RecipeViewerComponent } from './recipe-viewer/recipe-viewer.component';
 import { RecipeViewerService } from './services/recipe-viewer.service';
 import { DirectionsPipe } from './directions-pipe';
 import { BrowseRecipesComponent } from './browse-recipes/browse-recipes.component';
+import { ProfileService } from './services/profile.service';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { BrowseRecipesComponent } from './browse-recipes/browse-recipes.componen
   providers: [
     CategoriesService,
     RecipeViewerService,
+    ProfileService
    ],
   bootstrap: [AppComponent]
 })
