@@ -25,6 +25,7 @@ export class HomePageComponent implements OnInit {
         this.recipes.sort((r1, r2) => r2.upvotes - r1.upvotes);
         console.log();
       });
+
   }
 
   checkUser() {

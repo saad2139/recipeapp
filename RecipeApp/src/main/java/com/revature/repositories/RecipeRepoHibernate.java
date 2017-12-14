@@ -60,16 +60,50 @@ public class RecipeRepoHibernate implements RecipeRepo {
 	@Transactional
 	public Recipe save(Recipe r, int id) {
 		Session session = sf.getCurrentSession();
+<<<<<<< HEAD
+		System.out.println("you are here--------------------------------------------------------------------------------------------");
+		//cannot save the recipe because the category and ingredients need the id of the recipe to be saved
+=======
 		System.out.println(
 				"you are here--------------------------------------------------------------------------------------------");
 		User creator = (User) session.load(User.class, id); // *******this works
 		// cannot save the recipe because the category and ingredients need the id of
 		// the recipe to be saved
+>>>>>>> master
 
 		r.setCreator(creator); // *******Set the creator of the recipe
 
+<<<<<<< HEAD
+		//r.setCategories(r.getCategories());
+//		
+//		Set<Category> catList =  r.getCategories();
+//		for(Category c: catList) {
+//			Category cat = (Category) session.get(Category.class, c.getCategoryId());
+//			Set<Recipe> listRe = cat.getRecipes();
+//			System.out.println("Current Recipes" + listRe + "---------------------------------------");
+//			if(listRe == null) {
+//				Set<Recipe> recipe = new HashSet<Recipe>();
+//				recipe.add(r);
+//			} else {
+//				listRe.add(r);
+//			}
+//			System.out.println("category================================================" + cat);
+//			cat.setRecipes(listRe);
+//			System.out.println("after categories are modified----------------------------------------");
+//		}
+		
+//		r.setCategories(r.getCategories());
+//		r.setIngredients(r.getIngridients());
+		
+
+		
+		session.save(r);	//***save the recipe
+
+		
+=======
 		session.save(r); // ***save the recipe
 		r.getRecipeId();
+>>>>>>> master
 		return r;
 	}
 

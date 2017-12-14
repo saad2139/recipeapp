@@ -60,11 +60,11 @@ public class Recipe {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL})
 	@JoinTable(
 			name = "recipe_ingredients",
-			joinColumns = { @JoinColumn(name = "recipe_id")},
-			inverseJoinColumns = { @JoinColumn (name = "ingredient_id")})
+			joinColumns = @JoinColumn(name = "recipe_id"),
+			inverseJoinColumns = @JoinColumn (name = "ingredient_id"))
 	private Set<Ingredient> ingredients;
 	
-	@ManyToMany (fetch = FetchType.EAGER, cascade = { CascadeType.ALL})
+	@ManyToMany (targetEntity = Category.class, fetch = FetchType.EAGER, cascade = { CascadeType.ALL})
 	@JoinTable(
 			name = "recipe_categories",
 			joinColumns = { @JoinColumn(name = "recipe_id")},
