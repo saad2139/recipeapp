@@ -29,6 +29,7 @@ public class RecipeController {
   
 	@Autowired
 	private UserService us;
+	
 	@GetMapping("allRecipes")
 	public List<Recipe> getAllRecipes() throws SQLException {
 		byte[] bytes;

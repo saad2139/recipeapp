@@ -60,12 +60,10 @@ public class RecipeRepoHibernate implements RecipeRepo {
 	public Recipe save(Recipe r, int id) {
 		Session session = sf.getCurrentSession();
 		System.out.println("you are here--------------------------------------------------------------------------------------------");
-		User creator = (User) session.load(User.class, id); //*******this works
 		//cannot save the recipe because the category and ingredients need the id of the recipe to be saved
 
 		//Set<Ingredient> ingredientList = r.getIngridients();
 
-		r.setCreator(creator); //*******Set the creator of the recipe
 		//r.setCategories(r.getCategories());
 //		
 //		Set<Category> catList =  r.getCategories();
@@ -87,8 +85,11 @@ public class RecipeRepoHibernate implements RecipeRepo {
 //		r.setCategories(r.getCategories());
 //		r.setIngredients(r.getIngridients());
 		
+
+		
 		session.save(r);	//***save the recipe
-		r.getRecipeId();
+
+		
 		return r;
 	}
 //	@Transactional

@@ -51,8 +51,7 @@ export class AddRecipeComponent implements OnInit {
   constructor(private categoriesService: CategoriesService, private router: Router, private http: Http) { }
 
   ngOnInit() {
-    this.categoriesService.getCategories().
-    subscribe(responseCategories => this.listOfCategories = responseCategories);
+    
   }
 
   get diagnostic() {

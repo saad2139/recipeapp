@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class RecipeViewerService {
 
-    id: Number;
+  id: Number;
 
   constructor(private http: Http, private router: Router) {
 
@@ -25,4 +25,8 @@ export class RecipeViewerService {
     this.id = id;
     this.router.navigate(['/viewRecipe/']);
   }
+
+  
+
+  
 }
