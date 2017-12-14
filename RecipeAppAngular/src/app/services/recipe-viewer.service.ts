@@ -25,8 +25,4 @@ export class RecipeViewerService {
     this.id = id;
     this.router.navigate(['/viewRecipe/']);
   }
-
-  
-
-  
 }
