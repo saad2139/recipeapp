@@ -57,18 +57,41 @@ public class RecipeRepoHibernate implements RecipeRepo {
 	@Override
 	@Transactional
 	public Recipe save(Recipe r, int id) {
-		//Set<Category> c = r.getCategories();
-		//Set<Ingredient> i = r.getIngredients();
-		r.setDateCreated(Date.valueOf(LocalDate.now()));
+		Set<Category> categories = r.getCategories();
+		Set<Ingredient> ingredients = r.getIngredients();
 		Session session = sf.getCurrentSession();
-		System.out.println("you are here--------------------------------------------------------------------------------------------");
-		//			User creator = (User) session.load(User.class, id); //*******this works
-		//cannot save the recipe because the category and ingredients need the id of the recipe to be saved
 		session.save(r);	//***save the recipe
-//		r.setCategories(c);
-//		r.setIngredients(i);
 		return r;
 	}
+	
+	@Transactional
+	public Recipe saveRecipe(Recipe r){
+		Session session = sf.getCurrentSession();
+		r.setCategories(null);
+		r.setIngredients(null);
+		r.setDateCreated(Date.valueOf(LocalDate.now()));
+		System.out.println("saving without ingredients or cats-------------------------------");
+		session.save(r);
+		return r;
+	}
+	
+	@Transactional
+	private void saveCategoriesAndIngredients(Set<Category> categories, Set<Ingredient> ingredients, int recipeId) {
+		Session session = sf.getCurrentSession();
+		System.out.println(categories);
+		System.out.println(ingredients);
+		Recipe recipe = (Recipe) session.get(Recipe.class, recipeId);
+		for(Category c : categories) {
+			c.getRecipes().add(recipe);
+		}
+		for(Ingredient i : ingredients) {
+			i.getRecipes().add(recipe);
+		}
+		
+		
+	}
+
+
 
 	@Override
 	@Transactional

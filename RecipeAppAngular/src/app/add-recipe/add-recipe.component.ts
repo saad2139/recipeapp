@@ -22,6 +22,7 @@ export class AddRecipeComponent implements OnInit {
     {id: 3, difficulty_level: 'Hard'},
     {id: 4, difficulty_level: 'Expert'}];
 
+  currentUser = {};
   newIngredient = new Ingredient();
   recipeCategories: Array<Category> = [];
   recipeIngredients: Array<Ingredient> = [];
@@ -38,8 +39,9 @@ export class AddRecipeComponent implements OnInit {
     upvotes: 0,
     flag: 0,
     difficulty: this.difficulties[0],
-    creator: {id: 162, username: 'bcrocker', password: 'cooking',
-      email: 'betty@crocker.com', first_name: 'Betty', last_name: 'Croker', role_id: 1 },
+    creator: this.currentUser,
+    // creator: {id: 162, username: 'bcrocker', password: 'cooking',
+    //   email: 'betty@crocker.com', first_name: 'Betty', last_name: 'Croker', role_id: 1 },
     ingredients: this.recipeIngredients,
     categories: this.recipeCategories,
   };
@@ -51,6 +53,7 @@ export class AddRecipeComponent implements OnInit {
   constructor(private categoriesService: CategoriesService, private router: Router, private http: Http) { }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.categoriesService.getCategories().
     subscribe(responseCategories => this.listOfCategories = responseCategories);
   }
@@ -63,14 +66,14 @@ export class AddRecipeComponent implements OnInit {
     this.submitted = true;
     alert(JSON.stringify(this.recipe));
     console.log(this.recipe.ingredients);
-    // console.log(JSON.parse(localStorage.getItem('currentUser')));
 
     this.http.post(environment.context + 'recipe/addRecipe', this.recipe, {withCredentials: true})
       .subscribe((succResp) => {
         if (succResp.text() !== '') {
           alert('added recipe successfully');
+          this.router.navigateByUrl('/viewRecipe');
         } else {
-          alert('added recipe successfully');
+          alert('could not add recipe');
         }
       });
   }

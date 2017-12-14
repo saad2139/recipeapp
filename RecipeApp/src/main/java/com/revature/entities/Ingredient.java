@@ -29,7 +29,7 @@ public class Ingredient {
 
 	private String quantity;
 	//************8
-//	@ManyToMany(mappedBy = "ingredients") --BEFORE
+//	@ManyToMany(mappedBy = "ingredients") //--BEFORE
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)  //cascade all
 	@JoinTable(
 			name = "recipe_ingredients",
@@ -128,11 +128,11 @@ public class Ingredient {
 	
 	//set recipes used to update the join table
 	public void setRecipes(Set<Recipe> recipes) {
-		for(Recipe r : recipes) {
-			if(!r.getIngredients().contains(this)) {
-				r.getIngredients().add(this);
-			}
-		}
+//		for(Recipe r : recipes) {
+//			if(!r.getIngredients().contains(this)) {
+//				r.getIngredients().add(this);
+//			}
+//		}
 		this.recipes = recipes;
 	}
 

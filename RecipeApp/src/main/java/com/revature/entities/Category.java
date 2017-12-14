@@ -27,13 +27,21 @@ public class Category {
 			name = "recipe_categories",
 			joinColumns = { @JoinColumn(name = "category_id")},
 			inverseJoinColumns = { @JoinColumn (name = "recipe_id")})
-	//@ManyToMany(mappedBy = "categories") //****
+//	@ManyToMany(mappedBy = "categories") //****
 	private Set<Recipe> recipes;
 	
 	public Category() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	public Category(int categoryId, String categoryName) {
+		super();
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
+	}
+
 
 	public Category(int categoryId, String categoryName, Set<Recipe> recipes) {
 		super();
@@ -68,11 +76,11 @@ public class Category {
 
 	//set recipes used to update the join table
 	public void setRecipes(Set<Recipe> recipes) {
-		for(Recipe r : recipes) {
-			if(!r.getCategories().contains(this)) {
-				r.getCategories().add(this);
-			}
-		}
+//		for(Recipe r : recipes) {
+//			if(!r.getCategories().contains(this)) {
+//				r.getCategories().add(this);
+//			}
+//		}
 		this.recipes = recipes;
 	}
 	

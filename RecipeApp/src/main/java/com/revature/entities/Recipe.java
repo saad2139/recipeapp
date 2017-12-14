@@ -71,7 +71,7 @@ public class Recipe {
 //			name = "recipe_categories",
 //			joinColumns = { @JoinColumn(name = "recipe_id")},
 //			inverseJoinColumns = { @JoinColumn (name = "category_id")})
-	private Set<Category> categories =  new HashSet<>();
+	private Set<Category> categories;
 
 	public Set<Ingredient> getIngredients() {
 		return ingredients;
