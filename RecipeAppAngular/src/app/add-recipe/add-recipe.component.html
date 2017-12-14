@@ -1,8 +1,9 @@
 {{diagnostic}}
 <div class="container col-10 col-md-8 align-items-center">
-  <h3>Add a new recipe!</h3>
+ 
   <!-- <form (ngSubmit)="onSubmit()" #recipeForm="ngForm"> -->
-   <form>
+   <form #recipeForm="ngForm">
+    <h3>Add a new recipe!</h3>
     <div class="form-group">
       <label for="recipe-name">Recipe Name</label>
       <input type="text" class="form-control" id="recipeName" name="recipeName" [(ngModel)]="recipe.recipeName" placeholder="Enter recipe_name"
@@ -48,8 +49,9 @@
       <div class="form-group">
       <label for="ingredients">Ingredients</label>
       <div *ngIf="addMoreIngredients">
+          <p>Ingredients List </p>
         <div *ngFor="let in of recipe.ingredients">
-          <p>IngredientName: {{in.name}} IngredientQuantity: {{in.quantity}}</p>
+          <p>{{in.quantity}} {{in.name}}</p>
         </div>
       </div>
       <div class="row">
@@ -71,8 +73,8 @@
     <!-- <p>{{recipe.ingredients.ingredientName}} {{recipe.ingredients.ingridientQuantity}}</p> -->
     <div class="form-group">
       <label for="directions">Directions</label>
-      <input type="text" class="form-control" id="directions" name="directions" [(ngModel)]="recipe.directions" placeholder="Enter directions"
-        required>
+      <textarea type="text" class="form-control" rows="5" id="directions" name="directions" [(ngModel)]="recipe.directions" placeholder="Enter directions"
+        required></textarea>
     </div>
     <!-- <p>{{recipe.directions}}</p> -->
     <button (click) = "onSubmit()" class="btn btn-primary">Submit</button>

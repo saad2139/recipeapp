@@ -5,6 +5,9 @@ import { CategoriesService } from '../services/categories.service';
 import { Category } from '../entities/Category';
 import { Ingredient } from '../entities/Ingredient';
 import { environment } from '../../environments/environment';
+import { RecipeViewerService } from '../services/recipe-viewer.service';
+import { Recipe } from '../entities/Recipe';
+
 
 // this.creator = JSON.parse(localStorage.getItem('currentUser'));
 // console.log(JSON.parse(localStorage.getItem('currentUser')));
@@ -50,7 +53,8 @@ export class AddRecipeComponent implements OnInit {
   submitted = false;
   listOfCategories = [];
 
-  constructor(private categoriesService: CategoriesService, private router: Router, private http: Http) { }
+  constructor(private categoriesService: CategoriesService, private router: Router, private http: Http,
+    private rv: RecipeViewerService) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -71,7 +75,8 @@ export class AddRecipeComponent implements OnInit {
       .subscribe((succResp) => {
         if (succResp.text() !== '') {
           alert('added recipe successfully');
-          this.router.navigateByUrl('/viewRecipe');
+          console.log(succResp.json());
+         // this.router.navigateByUrl('/viewRecipe');
         } else {
           alert('could not add recipe');
         }
@@ -79,7 +84,7 @@ export class AddRecipeComponent implements OnInit {
   }
 
   addIngredient() {
-    alert('clicked button');
+    // alert('clicked button');
     this.recipe.ingredients.push(this.newIngredient);
     this.newIngredient = new Ingredient();
     this.addMoreIngredients = true;
