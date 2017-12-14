@@ -29,7 +29,7 @@ export class AddRecipeComponent implements OnInit {
   newIngredient = new Ingredient();
   recipeCategories: Array<Category> = [];
   recipeIngredients: Array<Ingredient> = [];
-
+  addedRecipe: Recipe;
   // user
 
   // recipe name
@@ -42,9 +42,9 @@ export class AddRecipeComponent implements OnInit {
     upvotes: 0,
     flag: 0,
     difficulty: this.difficulties[0],
-    creator: this.currentUser,
-    // creator: {id: 162, username: 'bcrocker', password: 'cooking',
-    //   email: 'betty@crocker.com', first_name: 'Betty', last_name: 'Croker', role_id: 1 },
+   // creator: this.currentUser,
+    creator: {id: 162, username: 'bcrocker', password: 'cooking',
+      email: 'betty@crocker.com', first_name: 'Betty', last_name: 'Croker', role_id: 1 },
     ingredients: this.recipeIngredients,
     categories: this.recipeCategories,
   };
@@ -75,8 +75,11 @@ export class AddRecipeComponent implements OnInit {
       .subscribe((succResp) => {
         if (succResp.text() !== '') {
           alert('added recipe successfully');
+          this.addedRecipe = new Recipe();
+          this.addedRecipe = succResp.json();
+          this.rv.id = this.addedRecipe.recipeId; //-->ID
           console.log(succResp.json());
-         // this.router.navigateByUrl('/viewRecipe');
+          this.router.navigateByUrl('viewRecipe/' + this.rv.id);
         } else {
           alert('could not add recipe');
         }
