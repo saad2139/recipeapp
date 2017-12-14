@@ -48,7 +48,7 @@ public class Ingredient {
 		this.id = id;
 		this.name = name;
 		this.quantity = quantity;
-//		this.recipes = recipes;
+		this.recipes = recipes;
 	}
 	
 
@@ -65,7 +65,7 @@ public class Ingredient {
 		int result = 1;
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-//		result = prime * result + ((recipes == null) ? 0 : recipes.hashCode());
+		result = prime * result + ((recipes == null) ? 0 : recipes.hashCode());
 		return result;
 	}
 
@@ -90,11 +90,11 @@ public class Ingredient {
 				return false;
 		} else if (!quantity.equals(other.quantity))
 			return false;
-//		if (recipes == null) {
-//			if (other.recipes != null)
-//				return false;
-//		} else if (!recipes.equals(other.recipes))
-//			return false;
+		if (recipes == null) {
+			if (other.recipes != null)
+				return false;
+		} else if (!recipes.equals(other.recipes))
+			return false;
 		return true;
 	}
 
@@ -125,8 +125,14 @@ public class Ingredient {
 	public Set<Recipe> getRecipes() {
 		return recipes;
 	}
-
+	
+	//set recipes used to update the join table
 	public void setRecipes(Set<Recipe> recipes) {
+		for(Recipe r : recipes) {
+			if(!r.getIngredients().contains(this)) {
+				r.getIngredients().add(this);
+			}
+		}
 		this.recipes = recipes;
 	}
 

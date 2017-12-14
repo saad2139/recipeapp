@@ -1,6 +1,7 @@
 package com.revature.repositories;
 
-import java.util.HashSet;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -10,14 +11,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.entities.Category;
 import com.revature.entities.Ingredient;
 import com.revature.entities.Recipe;
-import com.revature.entities.User;
-
-import ch.qos.logback.core.net.SyslogOutputStream;
 
 @Repository
 @Transactional
@@ -54,20 +53,20 @@ public class RecipeRepoHibernate implements RecipeRepo {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//add recipe repo
 	@Override
 	@Transactional
 	public Recipe save(Recipe r, int id) {
+		//Set<Category> c = r.getCategories();
+		//Set<Ingredient> i = r.getIngredients();
+		r.setDateCreated(Date.valueOf(LocalDate.now()));
 		Session session = sf.getCurrentSession();
 		System.out.println("you are here--------------------------------------------------------------------------------------------");
-		User creator = (User) session.load(User.class, id); //*******this works
+		//			User creator = (User) session.load(User.class, id); //*******this works
 		//cannot save the recipe because the category and ingredients need the id of the recipe to be saved
-		r.setCreator(creator); //*******Set the creator of the recip
 		session.save(r);	//***save the recipe
-//		Recipe recipe = (Recipe) session.get(Recipe.class, recipeId);
-//		System.out.println(recipe +"------------------------------------------------------");
-//		recipe.setingredients(ingredients);
-//		System.out.println(recipe +"-update-----------------------------------------------------");
+//		r.setCategories(c);
+//		r.setIngredients(i);
 		return r;
 	}
 
@@ -79,10 +78,4 @@ public class RecipeRepoHibernate implements RecipeRepo {
 		cr.add(Restrictions.eq("recipeId", id));
 		return (Recipe) cr.uniqueResult();
 	}
-
-//	@Override
-//	public Recipe save(Recipe r, int id) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 }

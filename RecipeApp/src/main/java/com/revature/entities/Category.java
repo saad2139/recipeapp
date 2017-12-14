@@ -22,7 +22,7 @@ public class Category {
 	@Column(name = "category_name")
 	private String categoryName;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //ALL
 	@JoinTable(
 			name = "recipe_categories",
 			joinColumns = { @JoinColumn(name = "category_id")},
@@ -66,15 +66,16 @@ public class Category {
 		return recipes;
 	}
 
-
+	//set recipes used to update the join table
 	public void setRecipes(Set<Recipe> recipes) {
+		for(Recipe r : recipes) {
+			if(!r.getCategories().contains(this)) {
+				r.getCategories().add(this);
+			}
+		}
 		this.recipes = recipes;
 	}
 	
-	//save a recipe to the set of recipes
-	public void addRecipes(Recipe r) {
-		this.recipes.add(r);
-	}
 
 	@Override
 	public int hashCode() {
@@ -85,7 +86,6 @@ public class Category {
 		result = prime * result + ((recipes == null) ? 0 : recipes.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -110,7 +110,6 @@ public class Category {
 			return false;
 		return true;
 	}
-
 
 	@Override
 	public String toString() {

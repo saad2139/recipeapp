@@ -18,23 +18,24 @@ public class RecipeService {
 	@Autowired
 	private RecipeRepo rr;
 	
-//	@Autowired 
-//	private Ingredient ir;
-//	
-//	@Autowired 
-//	private CategoryRepo cr;
-
 	public List<Recipe> viewAllRecipes(){
 		return rr.findAll();
 	}
 
 	public Recipe addRecipe(Recipe r, int id) {
 		Set<Category> categories = r.getCategories();
-		Set<Ingredient> ingredients = r.getingredients();
+		Set<Ingredient> ingredients = r.getIngredients();
 		//r.setCategories(null);
 		//r.setingredients(null);
 		return rr.save(r,id);
 	}
+//	public Recipe addRecipe(Recipe r, int id) {
+//		Set<Category> categories = r.getCategories();
+//		Set<Ingredient> ingredients = r.getIngredients();
+//		//r.setCategories(null);
+//		//r.setingredients(null);
+//		return rr.save(r,id, categories, ingredients);
+//	}
 	
 	public List<Recipe> getUserRecipe(int u){
 		return rr.findByUserId(u);

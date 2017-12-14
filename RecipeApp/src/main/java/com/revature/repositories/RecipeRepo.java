@@ -24,5 +24,7 @@ public interface RecipeRepo {
 	
 	//add a new recipe
 	Recipe save(Recipe r, int id);
-	Recipe getRecipeById(int id);		
+	Recipe getRecipeById(int id);
+
+	//Recipe save(Recipe r, int id, Set<Category> categories, Set<Ingredient> ingredients);		
 }

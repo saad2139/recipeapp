@@ -65,13 +65,21 @@ public class Recipe {
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "recipes", cascade = CascadeType.ALL)  //changed
 	private Set<Ingredient> ingredients;
 	
-	@ManyToMany(mappedBy = "recipes", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "recipes", fetch = FetchType.EAGER, cascade = CascadeType.ALL) //currently
 //	@ManyToMany 
 //	@JoinTable(
 //			name = "recipe_categories",
 //			joinColumns = { @JoinColumn(name = "recipe_id")},
 //			inverseJoinColumns = { @JoinColumn (name = "category_id")})
 	private Set<Category> categories =  new HashSet<>();
+
+	public Set<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(Set<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
 
 	public Recipe() {
 		super();
@@ -177,21 +185,39 @@ public class Recipe {
 		this.creator = creator;
 	}
 
-	public Set<Ingredient> getingredients() {
-		return ingredients;
-	}
-
-	public void setingredients(Set<Ingredient> ingredients) {
+	//join table
+	public void setJoinIngredients(Set<Ingredient> ingredients) {
+		for(Ingredient i : ingredients) {
+			if(!i.getRecipes().contains(this)) {
+				i.getRecipes().add(this);
+			}
+		}
 		this.ingredients = ingredients;
 	}
 
 	public Set<Category> getCategories() {
 		return categories;
 	}
+	
+	//join table
+	public void setJoinCategories(Set<Category> categories) {
+		System.out.println(categories.size());
+		if(this.categories.size() > 0) {
+		for(Category c : categories) {
+			if(!c.getRecipes().contains(this)) {
+				c.getRecipes().add(this);
+			}
+		}
+		} else {
+		this.categories = categories;
+		}
+	}
 
 	public void setCategories(Set<Category> categories) {
 		this.categories = categories;
 	}
+
+	
 
 	@Override
 	public int hashCode() {
@@ -206,6 +232,7 @@ public class Recipe {
 		result = prime * result + ((difficulty == null) ? 0 : difficulty.hashCode());
 		result = prime * result + ((directions == null) ? 0 : directions.hashCode());
 		result = prime * result + flag;
+		result = prime * result + ((image == null) ? 0 : image.hashCode());
 		result = prime * result + ((ingredients == null) ? 0 : ingredients.hashCode());
 		result = prime * result + recipeId;
 		result = prime * result + ((recipeName == null) ? 0 : recipeName.hashCode());
@@ -250,6 +277,11 @@ public class Recipe {
 		} else if (!directions.equals(other.directions))
 			return false;
 		if (flag != other.flag)
+			return false;
+		if (image == null) {
+			if (other.image != null)
+				return false;
+		} else if (!image.equals(other.image))
 			return false;
 		if (ingredients == null) {
 			if (other.ingredients != null)
