@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import { ProfileService } from '../services/profile.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,13 +12,14 @@ export class LoginComponent implements OnInit {
 
   username: '';
   password: '';
+  sendUser: {};
 
   credentials = {
     username: '',
     password: ''
   };
 
-  constructor(public http: Http, private router: Router) { }
+  constructor(public http: Http, private router: Router,  @Inject(ProfileService) private ps: ProfileService) { }
 
   ngOnInit() {
 
@@ -46,7 +48,8 @@ export class LoginComponent implements OnInit {
         if (successResponse.text() !== '') {
           console.log('login successful. Saving user to local storage: ' + successResponse.text());
           localStorage.setItem('currentUser', JSON.stringify(successResponse.json()));
-          this.router.navigate(['/profile']);
+          this.sendUser = JSON.parse(localStorage.getItem('currentUser'));
+          this.ps.goToRecipe(this.sendUser);
         } else {
           alert('Credentials incorrect.');
         }

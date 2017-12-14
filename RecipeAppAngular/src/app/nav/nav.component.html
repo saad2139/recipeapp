@@ -13,7 +13,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/profile" *ngIf="this.checkUser()">Profile</a>
+        <a class="nav-link" (click)="this.ps.goToRecipe(this.loggedInUser.id)" *ngIf="this.checkUser()">Profile</a>
       </li>
       <li ngbDropdown class="d-inline-block">
         <a class="nav-link dropdown-toggle" id="" ngbDropdownToggle>Categories</a>

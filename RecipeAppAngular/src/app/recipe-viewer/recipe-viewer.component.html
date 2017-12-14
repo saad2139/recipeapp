@@ -17,7 +17,7 @@
     <div class="col-sm-8 text-left line-breaker"> 
       <h1>{{this.recipe.recipeName}}</h1>
       <p><img [src]="this.recipe.image" class="image"/></p>
-      <p class="signature pointer">by {{this.recipe.creator.username}}</p>
+      <p class="signature pointer" (click)="this.ps.goToRecipe(this.recipe.creator.id)">by {{this.recipe.creator.username}}</p>
       <hr>
       <h3>Cooking Directions</h3>
       <p>{{this.recipe.directions | directions}}</p>
