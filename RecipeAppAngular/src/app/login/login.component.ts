@@ -50,12 +50,7 @@ export class LoginComponent implements OnInit {
         } else {
           alert('Credentials incorrect.');
         }
-<<<<<<< HEAD
-      },
-=======
-        else alert("Credentials incorrect.")
   },
->>>>>>> master
       (failResponse) => {
         alert('Failed to establish connection with server.');
       });

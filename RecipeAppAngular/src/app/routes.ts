@@ -26,14 +26,8 @@ export const appRoutes: Routes = [
     component: BrowseRecipesComponent
   },
   {
-    path: 'recipe',
-    component: RecipeComponent,
-    children: [
-      {
-        path: 'addRecipe',
-        component: AddRecipeComponent
-      }
-    ]
+    path: 'addRecipe',
+    component: AddRecipeComponent
   },
   {
     path: '',

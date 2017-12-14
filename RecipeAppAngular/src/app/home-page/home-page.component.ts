@@ -28,28 +28,13 @@ export class HomePageComponent implements OnInit {
   }
 
   checkUser() {
-<<<<<<< HEAD
 
-    if (localStorage.getItem('currentUser') === '') {
-
-      return false;
-    } else {
-      // let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
-      // this.followingList = currentUser.following_list;
-      // console.log(JSON.parse(localStorage.getItem('currentUser')));
-      // console.log(currentUser);
-      // console.log(this.followingList);
-      return true;
-    }
-=======
-  
     if (localStorage.getItem('currentUser') === '') return false;
     else return true;
-    
->>>>>>> master
+
   }
 
-  
+
 
 
 }
