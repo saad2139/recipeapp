@@ -17,6 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -32,8 +33,7 @@ public class Recipe {
 	@Column(name = "recipe_name")
 	private String recipeName;
 
-	// not sure how we are going to implement
-	//private Blob image;
+	private String image;
 
 	@Column(name = "cooking_time")
 	private double cookingTime;
@@ -64,37 +64,12 @@ public class Recipe {
 			inverseJoinColumns = { @JoinColumn (name = "ingredient_id")})
 	private Set<Ingredient> ingredients;
 	
-	@ManyToMany(mappedBy = "recipes", fetch = FetchType.EAGER, cascade= {CascadeType.ALL})
-//	@ManyToMany //
-//	@JoinTable(
-//			name = "recipe_categories",
-//			joinColumns = { @JoinColumn(name = "recipe_id")},
-//			inverseJoinColumns = { @JoinColumn (name = "category_id")})
-	private Set<Category> categories =  new HashSet<>();
-
-	public Recipe() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	public Recipe(int recipeId, String recipeName, Blob image, double cookingTime, Date dateCreated, String directions,
-			int upvotes, int flag, Difficulty difficulty, User creator, Set<Ingredient> ingredients,
-			Set<Category> categories) {
-		super();
-		this.recipeId = recipeId;
-		this.recipeName = recipeName;
-		//this.image = image;
-		this.cookingTime = cookingTime;
-		this.dateCreated = dateCreated;
-		this.directions = directions;
-		this.upvotes = upvotes;
-		this.flag = flag;
-		this.difficulty = difficulty;
-		this.creator = creator;
-		this.ingredients = ingredients;
-		this.categories = categories;
-	}
-
+	@ManyToMany (fetch = FetchType.EAGER, cascade = { CascadeType.ALL})
+	@JoinTable(
+			name = "recipe_categories",
+			joinColumns = { @JoinColumn(name = "recipe_id")},
+			inverseJoinColumns = { @JoinColumn (name = "category_id")})
+	private Set<Category> categories;
 
 	public int getRecipeId() {
 		return recipeId;
@@ -112,13 +87,13 @@ public class Recipe {
 		this.recipeName = recipeName;
 	}
 
-//	public Blob getImage() {
-//		return image;
-//	}
-//
-//	public void setImage(Blob image) {
-//		this.image = image;
-//	}
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	public double getCookingTime() {
 		return cookingTime;
@@ -156,6 +131,11 @@ public class Recipe {
 		return flag;
 	}
 
+	public Recipe() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public void setFlag(int flag) {
 		this.flag = flag;
 	}
@@ -176,11 +156,11 @@ public class Recipe {
 		this.creator = creator;
 	}
 
-	public Set<Ingredient> getingredients() {
+	public Set<Ingredient> getIngredients() {
 		return ingredients;
 	}
 
-	public void setingredients(Set<Ingredient> ingredients) {
+	public void setIngredients(Set<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
 
@@ -190,6 +170,14 @@ public class Recipe {
 
 	public void setCategories(Set<Category> categories) {
 		this.categories = categories;
+	}
+
+	@Override
+	public String toString() {
+		return "Recipe [recipeId=" + recipeId + ", recipeName=" + recipeName + ", image=" + image + ", cookingTime="
+				+ cookingTime + ", dateCreated=" + dateCreated + ", directions=" + directions + ", upvotes=" + upvotes
+				+ ", flag=" + flag + ", difficulty=" + difficulty + ", creator=" + creator + ", ingredients="
+				+ ingredients + ", categories=" + categories + "]";
 	}
 
 	@Override
@@ -205,6 +193,7 @@ public class Recipe {
 		result = prime * result + ((difficulty == null) ? 0 : difficulty.hashCode());
 		result = prime * result + ((directions == null) ? 0 : directions.hashCode());
 		result = prime * result + flag;
+		result = prime * result + ((image == null) ? 0 : image.hashCode());
 		result = prime * result + ((ingredients == null) ? 0 : ingredients.hashCode());
 		result = prime * result + recipeId;
 		result = prime * result + ((recipeName == null) ? 0 : recipeName.hashCode());
@@ -250,6 +239,11 @@ public class Recipe {
 			return false;
 		if (flag != other.flag)
 			return false;
+		if (image == null) {
+			if (other.image != null)
+				return false;
+		} else if (!image.equals(other.image))
+			return false;
 		if (ingredients == null) {
 			if (other.ingredients != null)
 				return false;
@@ -267,12 +261,25 @@ public class Recipe {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Recipe [recipeId=" + recipeId + ", recipeName=" + recipeName + ", cookingTime=" + cookingTime
-				+ ", dateCreated=" + dateCreated + ", directions=" + directions + ", upvotes=" + upvotes + ", flag="
-				+ flag + ", difficulty=" + difficulty + ", creator=" + creator + ", ingredients=" + ingredients
-				+ ", categories=" + categories + "]";
+	public Recipe(int recipeId, String recipeName, String image, double cookingTime, Date dateCreated,
+			String directions, int upvotes, int flag, Difficulty difficulty, User creator, Set<Ingredient> ingredients,
+			Set<Category> categories) {
+		super();
+		this.recipeId = recipeId;
+		this.recipeName = recipeName;
+		this.image = image;
+		this.cookingTime = cookingTime;
+		this.dateCreated = dateCreated;
+		this.directions = directions;
+		this.upvotes = upvotes;
+		this.flag = flag;
+		this.difficulty = difficulty;
+		this.creator = creator;
+		this.ingredients = ingredients;
+		this.categories = categories;
 	}
+	
+	
+
 	
 }

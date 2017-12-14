@@ -13,6 +13,7 @@ export class Recipe {
     flag: boolean;
     difficulty: Difficulty;
     creator: User;
+    image: String;
     ingredients: Array<Ingredient>;
     categories: Array<Category>;
 }

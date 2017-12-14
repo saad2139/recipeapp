@@ -28,3 +28,11 @@ footer {
 .line-breaker {
     white-space: pre-line;
   }
+
+  .image {
+    max-height: 100%;
+    max-width: 100%;
+    border: 10px solid transparent;
+    padding: 10px;
+    border-image: url(../assets/border.png) 30 stretch;
+  }
