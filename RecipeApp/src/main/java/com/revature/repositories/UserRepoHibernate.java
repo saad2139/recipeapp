@@ -14,6 +14,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.revature.entities.Recipe;
 import com.revature.entities.User;
 
 @Repository
@@ -29,7 +30,7 @@ public class UserRepoHibernate implements UserRepo {
 		Criteria cr = session.createCriteria(User.class);
 		cr.add(Restrictions.eq("username", username));
 		cr.add(Restrictions.eq("password", password));
-		
+
 		return (User) cr.uniqueResult();
 	}
 
@@ -44,12 +45,19 @@ public class UserRepoHibernate implements UserRepo {
 	@Transactional
 	public int userId(String username, String password) {
 		Session session = sf.getCurrentSession();
-		Criteria cr = session.createCriteria(User.class)
-				.setProjection(Projections.id());
+		Criteria cr = session.createCriteria(User.class).setProjection(Projections.id());
 		cr.add(Restrictions.eq("username", username));
 		cr.add(Restrictions.eq("password", password));
-		System.out.println(cr.uniqueResult()+"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		return (int) cr.uniqueResult();
+	}
+
+	@Override
+	@Transactional
+	public User getUser(int id) {
+		Session session = sf.getCurrentSession();
+		Criteria cr = session.createCriteria(User.class);
+		cr.add(Restrictions.eq("id", id));
+		return (User) cr.uniqueResult();
 	}
 
 }

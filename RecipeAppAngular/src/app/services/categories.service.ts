@@ -11,10 +11,22 @@ export class CategoriesService {
   constructor(private http: Http) {
   }
 
+<<<<<<< HEAD
   // url = 'http://localhost:8080/Recipe-App/categories';
   url = environment.context + 'categories';
+=======
+  url = environment.context + 'categories';
+  categories: Array<Category>;
+  currentCategory: Category;
+>>>>>>> master
 
   getCategories() {
-    return this.http.get(this.url).map((response: Response) => response.json());
+    this.http.get(environment.context + 'categories', { withCredentials: true }).subscribe(
+      (successResponse) => {
+        this.categories = successResponse.json();
+      },
+      (failResponse) => {
+        alert('Failed to retrieve desired recipe ID.');
+      });
   }
 }

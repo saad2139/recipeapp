@@ -57,6 +57,7 @@ public class Recipe {
 	@JoinColumn(name = "user_id")
 	private User creator;
 	
+
 //	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)  //cascade all
 //	@JoinTable(
 //			name = "recipe_ingredients",
@@ -65,13 +66,13 @@ public class Recipe {
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "recipes", cascade = CascadeType.ALL)  //changed
 	private Set<Ingredient> ingredients;
 	
-
-	@ManyToMany(mappedBy = "recipes", fetch = FetchType.EAGER)//, cascade = CascadeType.ALL) //currently
-//	@ManyToMany 
+	
+//	@ManyToMany (targetEntity = Category.class, fetch = FetchType.EAGER, cascade = { CascadeType.ALL})
 //	@JoinTable(
 //			name = "recipe_categories",
 //			joinColumns = { @JoinColumn(name = "recipe_id")},
 //			inverseJoinColumns = { @JoinColumn (name = "category_id")})
+	@ManyToMany(mappedBy = "recipes", fetch = FetchType.EAGER)//, cascade = CascadeType.ALL) 
 	private Set<Category> categories;
 
 	public Recipe() {

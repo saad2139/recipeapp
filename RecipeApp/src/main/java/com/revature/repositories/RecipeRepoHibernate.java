@@ -21,23 +21,24 @@ import com.revature.entities.Recipe;
 @Repository
 @Transactional
 public class RecipeRepoHibernate implements RecipeRepo {
-	
+
 	@Autowired
 	private SessionFactory sf;
-	
+
 	@Override
 	@Transactional
 	public List<Recipe> findByUserId(int id) {
 		Session session = sf.getCurrentSession();
 		Criteria cr = session.createCriteria(Recipe.class);
 		cr.add(Restrictions.eq("creator", id));
-		return (List<Recipe>)cr.list();
+		return (List<Recipe>) cr.list();
 	}
 
 	@Override
 	@Transactional
 	public List<Recipe> findAll() {
-		return (List<Recipe>)sf.getCurrentSession().createCriteria(Recipe.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		return (List<Recipe>) sf.getCurrentSession().createCriteria(Recipe.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 	}
 
 	@Override
@@ -64,6 +65,7 @@ public class RecipeRepoHibernate implements RecipeRepo {
 		return r;
 	}
 	
+
 	@Override
 	@Transactional
 	public Recipe getRecipeById(int id) {
