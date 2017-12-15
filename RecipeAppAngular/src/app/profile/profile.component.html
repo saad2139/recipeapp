@@ -43,7 +43,7 @@
           <div class="row">
             <div class="col-4" *ngFor='let recipe of (userRecipes | recipeFilter: this.viewProfile.id)'>
               <div class="thumbnail">
-                <img class="image" src="https://cdn.dribbble.com/users/7760/screenshots/244512/5.png">
+                <img class="image" [src]="this.recipe.image">
                 <div class="caption">
                   <h5 (click)="this.rv.navigateToRecipe(this.recipe.recipeId)">
                     {{recipe.recipeName}}

@@ -18,7 +18,6 @@ export class ProfileComponent implements OnInit, DoCheck {
   viewProfile = {};
   userRecipes: Array<Recipe>;
   constructor(private http: Http, private ps: ProfileService, private rv: RecipeViewerService) { }
-  recipeFilter: any = { recipe: '' };
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
