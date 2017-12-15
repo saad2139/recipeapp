@@ -15,7 +15,7 @@ export class BrowseRecipesComponent implements OnInit {
 
   constructor(public http: Http, @Inject(RecipeViewerService) private rv: RecipeViewerService, private cs: CategoriesService) { }
 
-  recipes: Array<Recipe>;
+  recipes: any;
 
   ngOnInit() {
 
@@ -25,7 +25,7 @@ export class BrowseRecipesComponent implements OnInit {
         this.recipes.sort((r1, r2) => r2.upvotes - r1.upvotes);
 
         if (this.cs.currentCategory) {
-          this.sortByCategory(this.cs.currentCategory);
+          this.sortByCategory(this.cs.currentCategory.categoryId);
           this.cs.currentCategory = null;
         }
       });
@@ -45,8 +45,23 @@ export class BrowseRecipesComponent implements OnInit {
     this.recipes.sort((a, b) => a.difficulty.id > b.difficulty.id ? 1 : -1);
   }
 
-  sortByCategory(category: Category) {
-    let desiredId = category.categoryId;
+  sortByCategory(category: Number) {
+    let strings: Array<Number>;
+    strings = [];
+    this.recipes.forEach(element => {
+      element.categories.forEach(ele => {
+        strings.push(ele.categoryId);
+      });
+    });
+    
+    for (var i = 0; i < strings.length; i++) {
+      var ele = strings[i];
+      console.log(ele + ' ' + category);
+      if (ele == category) {
+        this.recipes = this.recipes.splice(i, 1);
+      }
+  
+    }
   }
 
 }
