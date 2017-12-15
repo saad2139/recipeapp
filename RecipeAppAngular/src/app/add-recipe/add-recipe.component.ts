@@ -5,9 +5,9 @@ import { CategoriesService } from '../services/categories.service';
 import { Category } from '../entities/Category';
 import { Ingredient } from '../entities/Ingredient';
 import { environment } from '../../environments/environment';
-
-// this.creator = JSON.parse(localStorage.getItem('currentUser'));
-// console.log(JSON.parse(localStorage.getItem('currentUser')));
+import { RecipeViewerService } from '../services/recipe-viewer.service';
+import { Recipe } from '../entities/Recipe';
+import { EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-add-recipe',
@@ -22,10 +22,11 @@ export class AddRecipeComponent implements OnInit {
     {id: 3, difficulty_level: 'Hard'},
     {id: 4, difficulty_level: 'Expert'}];
 
+  currentUser = {};
   newIngredient = new Ingredient();
-  recipeCategories: Array<Category>;
-  recipeIngredients: Array<Ingredient>;
-
+  recipeCategories: Array<Category> = [];
+  recipeIngredients: Array<Ingredient> = [];
+  addedRecipe: Recipe;
   // user
 
   // recipe name
@@ -38,20 +39,23 @@ export class AddRecipeComponent implements OnInit {
     upvotes: 0,
     flag: 0,
     difficulty: this.difficulties[0],
-    creator: {id: 162, username: 'bcrocker', password: 'cooking',
-      email: 'betty@crocker.com', first_name: 'Betty', last_name: 'Croker', role_id: 1 },
+    creator: this.currentUser,
+    // creator: {id: 162, username: 'bcrocker', password: 'cooking',
+    //   email: 'betty@crocker.com', first_name: 'Betty', last_name: 'Croker', role_id: 1 },
     ingredients: this.recipeIngredients,
     categories: this.recipeCategories,
   };
 
   addMoreIngredients = false;
   submitted = false;
-  listOfCategories: any;
+  listOfCategories = [];
 
   constructor(private categoriesService: CategoriesService, private router: Router, private http: Http) { }
 
   ngOnInit() {
-    
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.categoriesService.getCategories2().subscribe(responseCategories => this.listOfCategories = responseCategories);
+    // this.categoriesService.getCategories().subscribe(responseCategories => this.listOfCategories = responseCategories);
   }
 
   get diagnostic() {
@@ -62,20 +66,22 @@ export class AddRecipeComponent implements OnInit {
     this.submitted = true;
     alert(JSON.stringify(this.recipe));
     console.log(this.recipe.ingredients);
-    // console.log(JSON.parse(localStorage.getItem('currentUser')));
 
     this.http.post(environment.context + 'recipe/addRecipe', this.recipe, {withCredentials: true})
       .subscribe((succResp) => {
         if (succResp.text() !== '') {
           alert('added recipe successfully');
+          this.addedRecipe = new Recipe();
+          this.addedRecipe = succResp.json();
+          console.log(succResp.json());
+          this.router.navigate(['/viewRecipe/']); // added recipe component go to profile
         } else {
-          alert('added recipe successfully');
+          alert('could not add recipe');
         }
       });
   }
 
   addIngredient() {
-    alert('clicked button');
     this.recipe.ingredients.push(this.newIngredient);
     this.newIngredient = new Ingredient();
     this.addMoreIngredients = true;

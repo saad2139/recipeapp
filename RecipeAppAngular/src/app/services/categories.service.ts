@@ -15,6 +15,10 @@ export class CategoriesService {
   categories: Array<Category>;
   currentCategory: Category;
 
+  getCategories2() {
+    return this.http.get(this.url).map((response: Response) => response.json());
+  }
+
   getCategories() {
     this.http.get('http://localhost:8080/Recipe-App/categories', { withCredentials: true }).subscribe(
       (successResponse) => {
