@@ -57,18 +57,10 @@ public class Recipe {
 	@JoinColumn(name = "user_id")
 	private User creator;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL})
-	@JoinTable(
-			name = "recipe_ingredients",
-			joinColumns = @JoinColumn(name = "recipe_id"),
-			inverseJoinColumns = @JoinColumn (name = "ingredient_id"))
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "recipes", cascade = CascadeType.ALL)
 	private Set<Ingredient> ingredients;
 	
-	@ManyToMany (targetEntity = Category.class, fetch = FetchType.EAGER, cascade = { CascadeType.ALL})
-	@JoinTable(
-			name = "recipe_categories",
-			joinColumns = { @JoinColumn(name = "recipe_id")},
-			inverseJoinColumns = { @JoinColumn (name = "category_id")})
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "recipes", cascade = CascadeType.ALL)
 	private Set<Category> categories;
 
 	public int getRecipeId() {

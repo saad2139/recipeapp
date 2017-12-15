@@ -18,9 +18,11 @@ public class Ingredient {
 
 	private String quantity;
 	
-//	@ManyToMany(mappedBy = "ingredients")
-//	private Set <Recipe> recipes;
-
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "recipe_ingredients", joinColumns = {@JoinColumn(name = "ingredient_id")},
+			inverseJoinColumns = {@JoinColumn(name = "recipe_id")})
+	private Set<Recipe> recipes;
+	
 	
 	public Ingredient() {
 		super();

@@ -60,9 +60,6 @@ public class RecipeRepoHibernate implements RecipeRepo {
 	@Transactional
 	public Recipe save(Recipe r, int id) {
 		Session session = sf.getCurrentSession();
-		User creator = (User) session.load(User.class, id); // *******this works
-
-		r.setCreator(creator); // *******Set the creator of the recipe
 		session.save(r); // ***save the recipe
 		r.getRecipeId();
 		return r;
