@@ -33,7 +33,7 @@
     </div>
     <!--/col-3-->
     <div class="col">
-      <button type="button" class="btn btn-success text-center" routerLink = "/addRecipe">Add New</button>
+      <button type="button" class="btn btn-success text-center" routerLink = "/addRecipe" *ngIf="!checkSameUser()">Add New</button>
       <button type="button" class="btn btn-danger text-center">Delete</button>
       <div class="panel panel-default">
         <h2>My Recipes</h2>

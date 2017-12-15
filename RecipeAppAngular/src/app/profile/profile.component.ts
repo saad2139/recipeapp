@@ -5,6 +5,7 @@ import { Recipe } from '../entities/Recipe';
 import { RecipeViewerService } from '../services/recipe-viewer.service';
 import { ProfileService } from '../services/profile.service';
 import { OnChanges, DoCheck } from '@angular/core/src/metadata/lifecycle_hooks';
+import { User } from '../entities/User';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -37,5 +38,14 @@ export class ProfileComponent implements OnInit, DoCheck {
       });
   }
   ngDoCheck() {
+}
+
+checkSameUser() {
+  let current = <User>JSON.parse(localStorage.getItem('currentUser'));
+  if (current.id == this.ps.userId) {
+    return false;
+  }else {
+    return true;
+  }
 }
 }

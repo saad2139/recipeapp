@@ -16,9 +16,9 @@
         <a class="nav-link" (click)="this.ps.goToRecipe(this.loggedInUser.id)" *ngIf="this.checkUser()">Profile</a>
       </li>
       <li ngbDropdown class="d-inline-block">
-        <a class="nav-link dropdown-toggle" id="" ngbDropdownToggle>Categories</a>
+        <a class="nav-link dropdown-toggle pointer" id="" ngbDropdownToggle>Categories</a>
         <div ngbDropdownMenu aria-labelledby="">
-          <button class="dropdown-item"  *ngFor="let category of this.categoriesService.categories" (click)="moveToCategory(category)">{{category.categoryName}}</button>
+          <button class="dropdown-item pointer"  *ngFor="let category of this.categoriesService.categories" (click)="moveToCategory(category)">{{category.categoryName}}</button>
         </div>
       </li>
     </ul>
