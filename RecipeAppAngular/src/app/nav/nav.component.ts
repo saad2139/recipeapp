@@ -16,7 +16,7 @@ export class NavComponent implements OnInit {
   loggedInUser: any;
   categories: Array<Category>;
 
-  constructor(private categoriesService: CategoriesService, private router: Router,
+  constructor(public categoriesService: CategoriesService, public router: Router,
     @Inject(ProfileService) private ps: ProfileService) { }
 
   ngOnInit() {

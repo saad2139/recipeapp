@@ -10,16 +10,16 @@ import { ProfileService } from '../services/profile.service';
 })
 export class LoginComponent implements OnInit {
 
-  username: '';
-  password: '';
-  sendUser: {};
+  username: any;
+  password: any;
+  sendUser: any;
 
   credentials = {
     username: '',
     password: ''
   };
 
-  constructor(public http: Http, private router: Router,  @Inject(ProfileService) private ps: ProfileService) { }
+  constructor(public http: Http, public router: Router,  @Inject(ProfileService) public ps: ProfileService) { }
 
   ngOnInit() {
 

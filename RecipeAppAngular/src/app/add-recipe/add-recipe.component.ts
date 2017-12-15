@@ -23,8 +23,8 @@ export class AddRecipeComponent implements OnInit {
     {id: 4, difficulty_level: 'Expert'}];
 
   newIngredient = new Ingredient();
-  recipeCategories: Array<Category> = [];
-  recipeIngredients: Array<Ingredient> = [];
+  recipeCategories: Array<Category>;
+  recipeIngredients: Array<Ingredient>;
 
   // user
 
@@ -46,7 +46,7 @@ export class AddRecipeComponent implements OnInit {
 
   addMoreIngredients = false;
   submitted = false;
-  listOfCategories = [];
+  listOfCategories: any;
 
   constructor(private categoriesService: CategoriesService, private router: Router, private http: Http) { }
 

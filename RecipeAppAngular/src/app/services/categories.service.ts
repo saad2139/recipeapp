@@ -8,15 +8,15 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class CategoriesService {
 
-  constructor(private http: Http) {
+  constructor(public http: Http) {
   }
 
-  url = environment.context + 'categories';
+  url = 'http://localhost:8080/Recipe-App/categories';
   categories: Array<Category>;
   currentCategory: Category;
 
   getCategories() {
-    this.http.get(environment.context + 'categories', { withCredentials: true }).subscribe(
+    this.http.get('http://localhost:8080/Recipe-App/categories', { withCredentials: true }).subscribe(
       (successResponse) => {
         this.categories = successResponse.json();
       },

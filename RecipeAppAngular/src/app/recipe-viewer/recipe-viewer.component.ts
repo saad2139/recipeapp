@@ -12,8 +12,8 @@ import { ProfileService } from '../services/profile.service';
 })
 export class RecipeViewerComponent implements OnInit {
 
-  constructor(public http: Http, @Inject(RecipeViewerService) private rv: RecipeViewerService,
-  @Inject(ProfileService) private ps: ProfileService) { }
+  constructor(public http: Http, @Inject(RecipeViewerService) public rv: RecipeViewerService,
+  @Inject(ProfileService) public ps: ProfileService) { }
   id: number;
   recipe: Recipe;
 

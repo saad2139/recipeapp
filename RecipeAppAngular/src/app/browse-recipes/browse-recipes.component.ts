@@ -13,7 +13,7 @@ import { CategoriesService } from '../services/categories.service';
 })
 export class BrowseRecipesComponent implements OnInit {
 
-  constructor(public http: Http, @Inject(RecipeViewerService) private rv: RecipeViewerService, private cs: CategoriesService) { }
+  constructor(public http: Http, @Inject(RecipeViewerService) public rv: RecipeViewerService, private cs: CategoriesService) { }
 
   recipes: any;
 

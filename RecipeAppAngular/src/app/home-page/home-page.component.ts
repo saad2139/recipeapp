@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(public http: Http, @Inject(RecipeViewerService) private rv: RecipeViewerService, private router: Router) { }
+  constructor(public http: Http, @Inject(RecipeViewerService) public rv: RecipeViewerService, private router: Router) { }
 
   recipes: Array<Recipe>;
 
