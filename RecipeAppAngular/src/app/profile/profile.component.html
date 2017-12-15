@@ -23,18 +23,11 @@
             <strong class="">Email: {{viewProfile.email}} </strong>
           </span>
         </li>
-        <li class="list-group-item">
-          <span class="pull-left">
-            <strong class="">Followers: </strong>
-          </span>
-        </li>
       </ul>
-      <button type="button" class="btn btn-success btn-block text-center">Follow!</button>
     </div>
     <!--/col-3-->
     <div class="col">
       <button type="button" class="btn btn-success text-center" routerLink = "/addRecipe" *ngIf="!checkSameUser()">Add New</button>
-      <button type="button" class="btn btn-danger text-center">Delete</button>
       <div class="panel panel-default">
         <h2>My Recipes</h2>
       </div>

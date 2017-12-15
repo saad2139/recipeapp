@@ -40,8 +40,8 @@ export class ProfileComponent implements OnInit, DoCheck {
 }
 
 checkSameUser() {
-  let current = <User>JSON.parse(localStorage.getItem('currentUser'));
-  if (current.id == this.ps.userId) {
+  const current = <User>JSON.parse(localStorage.getItem('currentUser'));
+  if (current.id === this.ps.userId) {
     return false;
   }else {
     return true;
