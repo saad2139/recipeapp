@@ -1,21 +1,13 @@
-{{diagnostic}}
+<!-- {{diagnostic}} -->
 <div class="container col-10 col-md-8 align-items-center">
- 
   <!-- <form (ngSubmit)="onSubmit()" #recipeForm="ngForm"> -->
-   <form #recipeForm="ngForm">
+  <form #recipeForm="ngForm">
     <h3>Add a new recipe!</h3>
     <div class="form-group">
       <label for="recipe-name">Recipe Name</label>
       <input type="text" class="form-control" id="recipeName" name="recipeName" [(ngModel)]="recipe.recipeName" placeholder="Enter recipe_name"
         required>
     </div>
-    <!-- <p>{{recipe.recipeName}}</p> -->
-    <!-- <div class="form-group">
-      <label for="exampleInputFile">Recipe Image</label>
-      <input type="file" class="form-control-file" id="recipeImage" name="image" [(ngModel)]="recipe.image" id="exampleInputFile"
-        aria-describedby="fileHelp">
-      <small id="fileHelp" class="form-text text-muted">Upload an image of your recipe to show how delicious it is!</small>
-    </div> -->
     <div class="form-group">
       <label for="cooking-time">Enter the url for your picture</label>
       <input type="text" class="form-control" id="url" name="image" [(ngModel)]="recipe.image" placeholder="Enter picture url"
@@ -34,38 +26,32 @@
       </select>
     </div>
     <div class="form-group">
-        <label>Category</label>
-        <select multiple class="form-control" name="categories" [(ngModel)]="recipe.categories">
-          <option *ngFor="let category of listOfCategories" [ngValue]="category">{{category.categoryName}}</option>
-        </select>
-      </div>
-    <!-- <div class="form-group">
-      <label for="categories">Categories</label>
-      <br />
-      <div *ngFor="let category of listOfCategories" class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="category" name="categories" required> {{category.categoryName}}
-      </div> -->
-    <!-- </div> -->
-      <div class="form-group">
+      <label>Category</label>
+      <select multiple class="form-control" name="categories" [(ngModel)]="recipe.categories">
+        <option *ngFor="let category of listOfCategories" [ngValue]="category">{{category.categoryName}}</option>
+      </select>
+    </div>
+    <div class="form-group">
       <label for="ingredients">Ingredients</label>
       <div *ngIf="addMoreIngredients">
-          <p>Ingredients List </p>
-        <div *ngFor="let in of recipe.ingredients">
-          <p>{{in.quantity}} {{in.name}}</p>
-        </div>
+        <h5>Ingredients List </h5>
+          <div *ngFor="let in of recipe.ingredients">
+            <p>{{in.quantity}} {{in.name}}</p>
+          </div>
       </div>
       <div class="row">
         <div class="col">
-            <small id="fileHelp" class="form-text text-muted">Ingredient Quatity</small>            
-          <input type="text" class="form-control" id="quantity" name="quantity" [(ngModel)]="newIngredient.quantity"
-            placeholder="Enter quantity" required>
+          <small id="quantityHelp" class="form-text text-muted">Ingredient Quatity</small>
+          <input type="text" class="form-control" id="quantity" name="quantity" [(ngModel)]="newIngredient.quantity" placeholder="Enter quantity"
+            required>
         </div>
         <div class="col-6">
-            <small id="fileHelp" class="form-text text-muted">Ingredient Name</small>            
-          <input type="text" class="form-control" id="ingredientName" name="name" [(ngModel)]="newIngredient.name"
-            placeholder="Enter ingredients" required>
+          <small id="ingredientNameHelp" class="form-text text-muted">Ingredient Name</small>
+          <input type="text" class="form-control" id="ingredientName" name="name" [(ngModel)]="newIngredient.name" placeholder="Enter ingredients"
+            required>
         </div>
         <div class="col">
+          <small id="space" class="form-text text-muted"></small>
           <button class="btn btn-primary" (click)="addIngredient()">Add Ingredient</button>
         </div>
       </div>
@@ -77,6 +63,6 @@
         required></textarea>
     </div>
     <!-- <p>{{recipe.directions}}</p> -->
-    <button (click) = "onSubmit()" class="btn btn-primary">Submit</button>
+    <button (click)="onSubmit()" class="btn btn-primary">Submit</button>
   </form>
 </div>

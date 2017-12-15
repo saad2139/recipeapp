@@ -66,7 +66,7 @@ public class Recipe {
 	private Set<Ingredient> ingredients;
 	
 
-	@ManyToMany(mappedBy = "recipes", fetch = FetchType.EAGER, cascade = CascadeType.ALL) //currently
+	@ManyToMany(mappedBy = "recipes", fetch = FetchType.EAGER)//, cascade = CascadeType.ALL) //currently
 //	@ManyToMany 
 //	@JoinTable(
 //			name = "recipe_categories",
@@ -96,15 +96,6 @@ public class Recipe {
 		this.ingredients = ingredients;
 		this.categories = categories;
 	}
-
-=======
-	@ManyToMany (fetch = FetchType.EAGER, cascade = { CascadeType.ALL})
-	@JoinTable(
-			name = "recipe_categories",
-			joinColumns = { @JoinColumn(name = "recipe_id")},
-			inverseJoinColumns = { @JoinColumn (name = "category_id")})
-	private Set<Category> categories;
->>>>>>> refs/remotes/origin/master
 
 	public int getRecipeId() {
 		return recipeId;
@@ -164,11 +155,6 @@ public class Recipe {
 
 	public int getFlag() {
 		return flag;
-	}
-
-	public Recipe() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public void setFlag(int flag) {
@@ -310,27 +296,5 @@ public class Recipe {
 		if (upvotes != other.upvotes)
 			return false;
 		return true;
-	}
-
-	public Recipe(int recipeId, String recipeName, String image, double cookingTime, Date dateCreated,
-			String directions, int upvotes, int flag, Difficulty difficulty, User creator, Set<Ingredient> ingredients,
-			Set<Category> categories) {
-		super();
-		this.recipeId = recipeId;
-		this.recipeName = recipeName;
-		this.image = image;
-		this.cookingTime = cookingTime;
-		this.dateCreated = dateCreated;
-		this.directions = directions;
-		this.upvotes = upvotes;
-		this.flag = flag;
-		this.difficulty = difficulty;
-		this.creator = creator;
-		this.ingredients = ingredients;
-		this.categories = categories;
-	}
-	
-	
-
-	
+	}	
 }

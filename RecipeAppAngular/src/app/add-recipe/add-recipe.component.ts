@@ -7,10 +7,7 @@ import { Ingredient } from '../entities/Ingredient';
 import { environment } from '../../environments/environment';
 import { RecipeViewerService } from '../services/recipe-viewer.service';
 import { Recipe } from '../entities/Recipe';
-
-
-// this.creator = JSON.parse(localStorage.getItem('currentUser'));
-// console.log(JSON.parse(localStorage.getItem('currentUser')));
+import { EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-add-recipe',
@@ -42,9 +39,9 @@ export class AddRecipeComponent implements OnInit {
     upvotes: 0,
     flag: 0,
     difficulty: this.difficulties[0],
-   // creator: this.currentUser,
-    creator: {id: 162, username: 'bcrocker', password: 'cooking',
-      email: 'betty@crocker.com', first_name: 'Betty', last_name: 'Croker', role_id: 1 },
+    creator: this.currentUser,
+    // creator: {id: 162, username: 'bcrocker', password: 'cooking',
+    //   email: 'betty@crocker.com', first_name: 'Betty', last_name: 'Croker', role_id: 1 },
     ingredients: this.recipeIngredients,
     categories: this.recipeCategories,
   };
@@ -53,13 +50,13 @@ export class AddRecipeComponent implements OnInit {
   submitted = false;
   listOfCategories = [];
 
-  constructor(private categoriesService: CategoriesService, private router: Router, private http: Http,
-    private rv: RecipeViewerService) { }
+  constructor(private categoriesService: CategoriesService, private router: Router, private http: Http) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.categoriesService.getCategories().
     subscribe(responseCategories => this.listOfCategories = responseCategories);
+    // this.categoriesService.getCategories().subscribe(responseCategories => this.listOfCategories = responseCategories);
   }
 
   get diagnostic() {
@@ -77,9 +74,8 @@ export class AddRecipeComponent implements OnInit {
           alert('added recipe successfully');
           this.addedRecipe = new Recipe();
           this.addedRecipe = succResp.json();
-          this.rv.id = this.addedRecipe.recipeId; //-->ID
           console.log(succResp.json());
-          this.router.navigateByUrl('viewRecipe/' + this.rv.id);
+          this.router.navigate(['/viewRecipe/']); // added recipe component go to profile
         } else {
           alert('could not add recipe');
         }
@@ -87,7 +83,6 @@ export class AddRecipeComponent implements OnInit {
   }
 
   addIngredient() {
-    // alert('clicked button');
     this.recipe.ingredients.push(this.newIngredient);
     this.newIngredient = new Ingredient();
     this.addMoreIngredients = true;

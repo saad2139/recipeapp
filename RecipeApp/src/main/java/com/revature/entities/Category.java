@@ -37,17 +37,11 @@ public class Category {
 	}
 	
 	
-	public Category(int categoryId, String categoryName) {
-		super();
-		this.categoryId = categoryId;
-		this.categoryName = categoryName;
-	}
-
-
 	public Category(int categoryId, String categoryName, Set<Recipe> recipes) {
 		super();
 		this.categoryId = categoryId;
 		this.categoryName = categoryName;
+		this.recipes = recipes;
 	}
 	
 	public int getCategoryId() {

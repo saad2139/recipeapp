@@ -46,9 +46,6 @@ public class RecipeController {
 	@PostMapping("addRecipe")
 	public Recipe addRecipe(@RequestBody Recipe r) {
 		int id = r.getCreator().getId();
-		log.trace("**********************************************"
-				+ "*******************************************recipe sent****************" + r + 
-				"#######################################################" + id);
 		return rs.addRecipe(r,id);
 	}
 	

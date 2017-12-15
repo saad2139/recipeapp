@@ -43,6 +43,7 @@ import { BrowseRecipesComponent } from './browse-recipes/browse-recipes.componen
     RecipeViewerComponent,
     DirectionsPipe,
     BrowseRecipesComponent,
+
    ],
   providers: [
     CategoriesService,
