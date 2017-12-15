@@ -28,8 +28,7 @@ public class Ingredient {
 	private String name;
 
 	private String quantity;
-	//************8
-//	@ManyToMany(mappedBy = "ingredients") //--BEFORE
+
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)  //cascade all
 	@JoinTable(
 			name = "recipe_ingredients",

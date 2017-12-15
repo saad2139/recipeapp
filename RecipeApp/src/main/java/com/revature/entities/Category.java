@@ -28,7 +28,6 @@ public class Category {
 			name = "recipe_categories",
 			joinColumns = { @JoinColumn(name = "category_id")},
 			inverseJoinColumns = { @JoinColumn (name = "recipe_id")})
-//	@ManyToMany(mappedBy = "categories") //****
 	private Set<Recipe> recipes;
 
 	public Category() {

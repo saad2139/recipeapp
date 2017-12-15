@@ -55,7 +55,7 @@ public class RecipeRepoHibernate implements RecipeRepo {
 		return null;
 	}
 	
-	//add recipe repo
+	//save the recipe
 	@Override
 	@Transactional
 	public Recipe save(Recipe r, int id) {

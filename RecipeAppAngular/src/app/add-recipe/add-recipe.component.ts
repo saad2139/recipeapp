@@ -53,14 +53,9 @@ export class AddRecipeComponent implements OnInit {
   constructor(private categoriesService: CategoriesService, private router: Router, private http: Http) { }
 
   ngOnInit() {
-<<<<<<< HEAD
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.categoriesService.getCategories().
-    subscribe(responseCategories => this.listOfCategories = responseCategories);
+    this.categoriesService.getCategories2().subscribe(responseCategories => this.listOfCategories = responseCategories);
     // this.categoriesService.getCategories().subscribe(responseCategories => this.listOfCategories = responseCategories);
-=======
-    
->>>>>>> master
   }
 
   get diagnostic() {
