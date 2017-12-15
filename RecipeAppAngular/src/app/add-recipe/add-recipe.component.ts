@@ -54,6 +54,7 @@ export class AddRecipeComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.recipe.creator = this.currentUser;
     this.categoriesService.getCategories2().subscribe(responseCategories => this.listOfCategories = responseCategories);
     // this.categoriesService.getCategories().subscribe(responseCategories => this.listOfCategories = responseCategories);
   }
@@ -64,7 +65,6 @@ export class AddRecipeComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    alert(JSON.stringify(this.recipe));
     console.log(this.recipe.ingredients);
 
     this.http.post(environment.context + 'recipe/addRecipe', this.recipe, {withCredentials: true})
@@ -74,7 +74,7 @@ export class AddRecipeComponent implements OnInit {
           this.addedRecipe = new Recipe();
           this.addedRecipe = succResp.json();
           console.log(succResp.json());
-          this.router.navigate(['/viewRecipe/']); // added recipe component go to profile
+          this.router.navigate(['/profile/']); // added recipe component go to profile
         } else {
           alert('could not add recipe');
         }

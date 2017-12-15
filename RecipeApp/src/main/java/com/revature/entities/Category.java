@@ -34,6 +34,11 @@ public class Category {
 		this.categoryName = categoryName;
 	}
 	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "recipe_categories", joinColumns = {@JoinColumn(name = "category_id")},
+			inverseJoinColumns = {@JoinColumn(name = "recipe_id")})
+	private Set<Recipe> recipes;
+	
 	public int getCategoryId() {
 		return categoryId;
 	}
